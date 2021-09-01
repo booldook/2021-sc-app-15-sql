@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title><%= status %> Error</title>
+	<style>
+		.wrapper {max-width: 600px; margin: auto; height: 100vh; padding-top: 15%;}
+		.wrapper .icon-wrap {display: flex; align-items: flex-end; border-bottom: 3px double #ccc; padding-bottom: 1em;}
+		.wrapper .icon-wrap .img-wp img {width: 100px;}
+		.wrapper .icon-wrap .msg-wp {font-size: 1.5em; padding-left: 1em;}
+		.wrapper .icon-wrap .msg-wp :last-child {font-size: .75em; color: #555;}
+		.wrapper .content-wrap {padding: .75em 0; line-height: 1.25; color: #777;}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="icon-wrap">
+			<div class="img-wp">
+				<img src="/img/error/<%= status == '404' ? '404' : 'error' %>.png" alt="icon">
+			</div>
+			<div class="msg-wp">
+				<div>ERROR <%= status %></div>
+				<% 
+				const msg = message.split('^^') 
+				const desc = (!msg[1] ||msg[1] == undefined || msg[1] == '' || msg[1] == 'undefined') ? msg[0] : msg[1];
+				%> 
+				<div><%= msg[0] %></div>
+			</div>
+		</div>
+		<div class="content-wrap"><%= desc %></div>
+	</div>
+</body>
+</html>

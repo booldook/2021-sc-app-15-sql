@@ -1,0 +1,12 @@
+{
+	"comment": {
+		"scope": "javascript",
+		"prefix": "app",
+		"body": [
+			"app.get('', (req, res, next) => {",
+				"",
+			"})"
+		],
+		"description": "node init"
+	}
+}

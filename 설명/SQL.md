@@ -58,4 +58,20 @@ GRANT ALL PRIVILEGES ON *.* TO 'root'@'127.0.0.1';
 
 -- 즉시 권한 적용
 FLUSH PRIVILEGES;
+
+-- 패스워드의 비밀번호 평문 -> 암호화 변경
+ALTER user 'root'@'127.0.0.1' IDENTIFIED WITH mysql_native_password BY '000000';
+```
+
+```sql
+CREATE TABLE `users`
+	`idx` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT FIRST,
+	`username` VARCHAR(50) NOT NULL AFTER `idx`,
+	`userid` VARCHAR(24) NOT NULL AFTER `username`,
+	`userpw` VARCHAR(255) NOT NULL AFTER `userid`,
+	`email` VARCHAR(255) NULL DEFAULT NULL AFTER `userpw`,
+	`info` TEXT NULL AFTER `email`,
+	`createdAt` DATETIME NOT NULL DEFAULT NOW() AFTER `info`,
+	ADD PRIMARY KEY (`idx`);
+
 ```

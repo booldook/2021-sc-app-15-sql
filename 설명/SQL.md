@@ -66,12 +66,11 @@ ALTER user 'root'@'127.0.0.1' IDENTIFIED WITH mysql_native_password BY '000000';
 ```sql
 CREATE TABLE `users`
 	`idx` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT FIRST,
-	`username` VARCHAR(50) NOT NULL AFTER `idx`,
-	`userid` VARCHAR(24) NOT NULL AFTER `username`,
-	`userpw` VARCHAR(255) NOT NULL AFTER `userid`,
-	`email` VARCHAR(255) NULL DEFAULT NULL AFTER `userpw`,
-	`info` TEXT NULL AFTER `email`,
-	`createdAt` DATETIME NOT NULL DEFAULT NOW() AFTER `info`,
+	`username` VARCHAR(50) NOT NULL,
+	`userid` VARCHAR(24) NOT NULL,
+	`userpw` VARCHAR(255) NOT NULL,
+	`email` VARCHAR(255) NULL DEFAULT NULL,
+	`info` TEXT NULL,
+	`createdAt` DATETIME NOT NULL DEFAULT NOW(),
 	ADD PRIMARY KEY (`idx`);
-
 ```

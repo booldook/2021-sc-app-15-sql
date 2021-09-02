@@ -1,0 +1,25 @@
+<script>
+	const users = [
+		{ id: 1, userid: 'booldook', userpw: '1111' },
+		{ id: 2, userid: 'hongkd', userpw: '1111' },
+	];
+
+	function _isUser(userid, cb) {
+		setTimeout(function() {
+			var user = users.filter(function(v) { return v.userid === userid });
+			if(user.length === 0) cb('아이디를 찾을 수 없습니다.');
+			else cb(null, user[0].userid);
+		}, 100);
+	}
+
+	function isUser(userid) {
+		return new Promise(function(resolve, reject) {
+			setTimeout(function() {
+				// resolve('OK')
+				reject('에러');
+			}, 1000)
+		});
+	}
+
+	isUser('booldook').then(function(r) { console.log(r) }).catch(function(err) { console.log(err) })
+</script>

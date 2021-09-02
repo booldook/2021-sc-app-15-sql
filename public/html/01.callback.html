@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+<form action="#" onsubmit="return send(this);">
+	<input type="text" name="userid" placeholder="아이디">
+	<input type="password" name="userpw" placeholder="패스워드">
+	<button>로그인</button>
+</form>
+
+<script src="../js/lodash.min.js"></script>
+<script>
+	/* 
+	로그인 요청
+	1. userid 데이터베이스에 있는지 확인
+	2. 있다면 userpw가 일치하는지 확인
+	3. 둘다 확인되면 .. 로그인 되었습니다.
+	*/
+	// var idx = _.findIndex(users, function(v) { return v.userid === userid });
+
+	const users = [
+		{ id: 1, userid: 'booldook', userpw: '1111' },
+		{ id: 2, userid: 'hongkd', userpw: '1111' },
+	];
+
+	function isUser(userid, cb) {
+		setTimeout(function() {
+			var user = users.filter(function(v) { return v.userid === userid });
+			if(user.length === 0) cb('아이디를 찾을 수 없습니다.');
+			else cb(null, user[0].userid);
+		}, 100);
+	}
+
+	function isAuth(userid, userpw, cb) {
+		setTimeout(function() {
+			var user = users.filter(function(v) { return v.userid === userid && v.userpw === userpw });
+			if(user.length === 0) cb('패스워드가 일치하지 않습니다.');
+			else cb(null, user[0].id);
+		}, 100);
+	}
+
+	function getInfo(id, cb) {
+		setTimeout(function() {
+			var user = users.filter(function(v) { return v.id === id });
+			if(user.length === 0) cb('정보를 찾을 수 없습니다.');
+			else cb(null, user);
+		}, 100)
+	}
+	
+	function send(f) {
+		var userid = f.userid.value;
+		var userpw = f.userpw.value;
+		
+		isUser(userid, function(err, r) {
+			if(err) {
+				alert(err);
+				return false;
+			}
+			else {
+				console.log(r);
+				isAuth(r, userpw, function(err2, r2) {
+					if(err2) {
+						alert(err2);
+						return false;
+					}
+					else {
+						console.log(r2);
+						getInfo(r2, function(err3, r3) {
+							if(err3) {
+								alert(err3);
+								return false;
+							}
+							else {
+								console.log(r3);
+								return false;
+							}
+						})
+					}
+				})
+			}
+		});
+		return false;
+	}
+
+	
+</script>
+</body>
+</html>

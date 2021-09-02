@@ -24,9 +24,9 @@ app.use('/', express.static(path.join(__dirname, 'public')))
 
 
 /*************** router init **************/
-// const Router = require('./routes/')
+const sqlRouter = require('./routes/sql')
 
-// app.use('/', Router)
+app.use('/sql', sqlRouter)
 
 
 /**************** error init **************/

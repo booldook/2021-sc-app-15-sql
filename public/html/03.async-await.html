@@ -7,14 +7,15 @@
 	<title>Document</title>
 </head>
 <body>
-<form action="#" onsubmit="return send(this);">
-	<input type="text" name="userid" placeholder="아이디">
-	<input type="password" name="userpw" placeholder="패스워드">
-	<button>로그인</button>
+<form action="#" name="loginForm">
+	<input type="text" name="userid" placeholder="아이디" autocomplete="userid">
+	<input type="password" name="userpw" placeholder="패스워드" autocomplete="userpw">
+	<button id="btSubmit">로그인</button>
 </form>
 
-<script src="../js/lodash.min.js"></script>
-<script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script>
+<script type="text/babel">
 	const users = [
 		{ id: 1, userid: 'booldook', userpw: '1111' },
 		{ id: 2, userid: 'hongkd', userpw: '1111' },
@@ -44,7 +45,7 @@
 		}, 100)
 	}
 
-	function isUser(userid) {
+	const isUser = userid => {
 		return new Promise(function(resolve, reject) {
 			setTimeout(function() {
 				var user = users.filter(function(v) { return v.userid === userid });
@@ -75,29 +76,23 @@
 	}
 
 
-	function send(f) {
+	async function onSend(e) {
+		e.preventDefault();
+		var f = document.loginForm;
 		var userid = f.userid.value;
 		var userpw = f.userpw.value;
-
-		isUser(userid)
-		.then(function(r) {
-			console.log(r);
-			return isAuth(r, userpw);
-		})
-		.then(function(r) {
-			console.log(r);
-			return getInfo(r)
-		})
-		.then(function(r) {
-			console.log(r);
-		})
-		.catch(function(err) {
+		try {
+			var r = await isUser(userid);
+			var r2 = await isAuth(r, userpw);
+			var r3 = await getInfo(r2);
+			console.log(r, r2, r3);
+		}
+		catch(err) {
 			alert(err);
-		})
-		return false;
+		}
 	}
 
-
+	document.querySelector('#btSubmit').addEventListener('click', onSend);
 </script>
 </body>
 </html>

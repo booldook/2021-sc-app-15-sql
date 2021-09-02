@@ -5,3 +5,4 @@
 .form-wrapper table td {padding: .75em; border-bottom: 1px solid #dfdfdf;}
 .form-wrapper table td.title {width: 160px;}
 .form-wrapper table textarea {height: 160px;}
+.form-wrapper table td.require::after {display: inline-block; content: '*'; color: #f10; margin-left: .5em; font-size: 1.25em;}

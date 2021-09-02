@@ -1,4 +1,42 @@
 <%- include('../inc/head') %> 
 <%- include('../inc/header') %> 
-
+<div class="form-wrapper wrapper">
+	<h3 class="title-wrap">
+		<span class="bullet"></span> <%= title %> 
+	</h3>
+	<form action="/book/save" name="saveForm">
+		<table>
+			<tbody>
+				<tr>
+					<td class="title">도서명</td>
+					<td class="content">
+						<input type="text" name="title" class="form-control" placeholder="도서명">
+					</td>
+				</tr>
+				<tr>
+					<td class="title">저자</td>
+					<td class="content">
+						<input type="text" name="writer" class="form-control" placeholder="저자">
+					</td>
+				</tr>
+				<tr>
+					<td class="title">요약 설명</td>
+					<td class="content">
+						<textarea name="content" class="form-control" placeholder="요약설명을 작성하세요"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td class="title">도서 커버 이미지</td>
+					<td class="content">
+						<input type="file" class="form-control-file" placeholder="도서커버이미지">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="btn-wrap p-3 text-center">
+			<button class="btn btn-success" id="btSave">저장</button>
+			<button class="btn btn-danger" type="reset">다시작성</button>
+		</div>
+	</form>
+</div>
 <%- include('../inc/foot') %> 

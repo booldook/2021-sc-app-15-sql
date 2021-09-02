@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap');
+/* font-family: 'Noto Sans KR', sans-serif; */
+
+html, body {font-family: 'Noto Sans KR', sans-serif;}
+
+.wrapper {max-width: 992px; margin: auto; padding: 2em 1em;}
+
+.header-wrapper {background-color: darkslategrey; color: #f9f9f9; display: flex; justify-content: space-between;}
+.header-wrapper h1.logo {font-size: 1.25em; padding: .75em;}
+.header-wrapper .navi-wrap {display: flex;}
+.header-wrapper .navi-wrap .navi {padding: 1em 1.5em;}
+.header-wrapper .navi-wrap .navi:hover {background-color: mistyrose; color:darkslategrey;}
+
+.header-wrapper a:link {text-decoration: none; color: inherit;}
+.header-wrapper a:visited {text-decoration: none; color: inherit;}
+.header-wrapper a:hover {text-decoration: none; color: inherit;}
+.header-wrapper a:active {text-decoration: none; color: inherit;}
+
+.title-wrapper {padding: 2em; background-color: #efefef;}
+.title-wrapper .title-wrap {font-size: 2em; margin-bottom: .5em;}
+.title-wrapper .desc-wrap {font-size: 1.25em; color: #555; margin-bottom: .75em;}
+.title-wrapper .btn-wrap {padding-top: 1em; border-top: 1px solid #ccc;}

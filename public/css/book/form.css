@@ -1,6 +1,4 @@
 .form-wrapper {}
-.form-wrapper .title-wrap {font-size: 1.5em; margin-bottom: 1em;}
-.form-wrapper .title-wrap .bullet {display: inline-block; width: 4px; height: 12px; background-color: mediumaquamarine; margin-right: 8px;}
 .form-wrapper table {width: 100%; border: 1px solid #ddd;}
 .form-wrapper table td {padding: .75em; border-bottom: 1px solid #dfdfdf;}
 .form-wrapper table td.title {width: 160px;}

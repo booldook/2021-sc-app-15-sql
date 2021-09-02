@@ -27,4 +27,15 @@ const error = (code, msg) => {
 
 const location = src => path.join(__dirname, '../', src)
 
-module.exports = { error, location }
+const cutTail = (str, len = 12) => str.length > len ? str.substr(0, len) + ' ...' : str
+
+const chgStatus = status => {
+	switch(status) {
+		case '0': return '절판'
+		case '1': return '판매중'
+		case '2': return '발행예정'
+		default : return '기타'
+	}
+}
+
+module.exports = { error, location, cutTail, chgStatus }

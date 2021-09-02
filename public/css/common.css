@@ -20,3 +20,6 @@ html, body {font-family: 'Noto Sans KR', sans-serif;}
 .title-wrapper .title-wrap {font-size: 2em; margin-bottom: .5em;}
 .title-wrapper .desc-wrap {font-size: 1.25em; color: #555; margin-bottom: .75em;}
 .title-wrapper .btn-wrap {padding-top: 1em; border-top: 1px solid #ccc;}
+
+.title-bar {font-size: 1.5em; margin-bottom: 1em;}
+.title-bar .bullet {display: inline-block; width: 4px; height: 12px; background-color: mediumaquamarine; margin-right: 8px;}

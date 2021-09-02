@@ -10,7 +10,7 @@ router.post('/', async (req, res, next) => {
 		const sql = 'INSERT INTO books SET title=?, writer=?, content=?'
 		const values = [title, writer, content]
 		const rs = await pool.execute(sql, values)
-		res.status(200).json(rs)
+		res.redirect('/book/list')
 	}
 	catch(err) {
 		next(error(500, err))

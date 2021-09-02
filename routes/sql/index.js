@@ -1,8 +1,8 @@
 const path = require('path')
 const express = require('express')
 const router = express.Router()
-const { error } = require('../../modules/util')
-const { pool } = require('../../modules/mysql')
+const { error } = require('../../modules/util-module')
+const { pool } = require('../../modules/mysql-module')
 
 
 router.get('/list', async (req, res, next) => {

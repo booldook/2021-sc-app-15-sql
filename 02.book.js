@@ -28,8 +28,8 @@ app.use('/book', bookRouter)
 
 
 /**************** error init **************/
-const notFoundRouter = require('./routes/error/404')
-const errorRouter = require('./routes/error/500')
+const notFoundRouter = require('./routes/error/404-router')
+const errorRouter = require('./routes/error/500-router')
 app.use(notFoundRouter)
 app.use(errorRouter)
 

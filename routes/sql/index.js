@@ -2,18 +2,8 @@ const path = require('path')
 const express = require('express')
 const router = express.Router()
 const { error } = require('../../modules/util')
+const { pool } = require('../../modules/mysql')
 
-const mysql = require('mysql2/promise')
-const pool = mysql.createPool({
-	host: process.env.DB_HOST,
-	port: process.env.DB_PORT,
-	user: process.env.DB_USER,
-	password: process.env.DB_PASS,
-	database: process.env.DB_NAME,
-	waitForConnections: true,
-	connectionLimit: 10,
-	queueLimit: 0
-});
 
 router.get('/list', async (req, res, next) => {
 	let sql = 'SELECT * FROM books'

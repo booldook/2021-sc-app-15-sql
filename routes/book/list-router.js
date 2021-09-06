@@ -4,19 +4,19 @@ const express = require('express')
 const router = express.Router()
 const { error, cutTail, chgStatus } = require('../../modules/util')
 const { pool } = require('../../modules/mysql-init')
-const pager = require('../../modules/pager-init')
+const createPager = require('../../modules/pager-init')
 
 router.get(['/', '/:page'], async (req, res, next) => {
 	try {
-		const sql = "SELECT COUNT(idx) FROM books"
-		const [[rs]] = await pool.execute(sql)
-		const totalRecord = rs['COUNT(idx)']
+		let sql = "SELECT COUNT(idx) FROM books"
+		const [[cnt]] = await pool.query(sql)
+		const totalRecord = cnt['COUNT(idx)']
 		const page = req.params.page || 1
-		const { listCnt, pagerCnt } = pager(page, totalRecord)
-		res.json({ page, listCnt, pagerCnt, totalRecord })
-		/*
-		const sql = 'SELECT * FROM books ORDER BY idx DESC';
-		const [rs] = await pool.execute(sql)
+		const pager = createPager(page, totalRecord, 2, 3)
+
+		sql = 'SELECT * FROM books ORDER BY idx DESC LIMIT ?, ?';
+		const values = [pager.startIdx, pager.listCnt]
+		const [rs] = await pool.query(sql, values)
 
 		const books = rs.map(v => {
 			v.createdAt = moment(v.createdAt).format('YYYY-MM-DD')
@@ -30,8 +30,7 @@ router.get(['/', '/:page'], async (req, res, next) => {
 		const js = 'book/list'
 		const css = 'book/list'
 		
-		res.status(200).render('book/list', { title, description, js, css, books })
-		*/
+		res.status(200).render('book/list', { title, description, js, css, books, pager })
 	}
 	catch(err) {
 		next(error(err))

@@ -1,0 +1,7 @@
+.view-wrapper table {width: 100%; border: 1px solid #ddd;}
+.view-wrapper table td {padding: .75em; border-bottom: 1px solid #dfdfdf;}
+.view-wrapper table td.title {width: 160px;}
+.view-wrapper table textarea {height: 160px;}
+.view-wrapper table td.require::after {display: inline-block; content: '*'; color: #f10; margin-left: .5em; font-size: 1.25em;}
+
+.book-img {width: 120px;}

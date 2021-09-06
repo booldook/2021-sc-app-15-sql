@@ -1,7 +1,7 @@
-<%- include('../inc/head') %> 
+<%- include('../inc/head', { css }) %> 
 <%- include('../inc/header') %> 
 <div class="form-wrapper wrapper">
-	<%- include('../inc/book/title-bar', { title }) %> 
+	<%- include('../inc/book/title-bar', { title, description }) %> 
 	<form action="/book/save" method="POST" name="saveForm">
 		<table>
 			<tbody>
@@ -37,4 +37,4 @@
 		</div>
 	</form>
 </div>
-<%- include('../inc/foot') %> 
+<%- include('../inc/foot', { js }) %> 

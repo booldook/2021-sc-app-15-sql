@@ -1,7 +1,7 @@
 <%- include('../inc/head', { css }) %> 
 <%- include('../inc/header') %> 
 <div class="list-wrapperw wrapper">
-	<%- include('../inc/book/title-bar', { title, description }) %>
+	<%- include('../inc/title-book', { title, description }) %>
 	<table class="book-tbl table table-hover table-striped text-center">
 		<thead class="thead-dark">
 			<tr>
@@ -26,6 +26,7 @@
 		<% } %> 
 		</tbody>
 	</table>
+	<%- include('../inc/pager') %>
 </div>
 
 <%- include('../inc/foot', { js }) %> 

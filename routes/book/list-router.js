@@ -2,8 +2,8 @@ const path = require('path')
 const moment = require('moment')
 const express = require('express')
 const router = express.Router()
-const { error, cutTail, chgStatus } = require('../../modules/util-module')
-const { pool } = require('../../modules/mysql-module')
+const { error, cutTail, chgStatus } = require('../../modules/util')
+const { pool } = require('../../modules/mysql-init')
 
 router.get('/', async (req, res, next) => {
 	try {

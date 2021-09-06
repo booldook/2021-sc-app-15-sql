@@ -1,11 +1,13 @@
-function onSubmit(f) {
-	var title = f.title.value.trim();
-	var writer = f.writer.value.trim();
-	var content = f.content.value.trim();
+document.saveForm.addEventListener('submit', onSubmit);
+function onSubmit(e) {
+	e.preventDefault();
+	var title = this.title.value.trim();
+	var writer = this.writer.value.trim();
+	var content = this.content.value.trim();
 	if(!title) {
 		alert('도서명을 입력하세요.');
-		f.title.focus();
+		this.title.focus();
 		return false;
 	}
-	return true;
+	this.submit();
 }

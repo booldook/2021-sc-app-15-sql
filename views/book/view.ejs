@@ -37,8 +37,8 @@
 		<button class="btn btn-success ml-auto mr-1" id="btUpdate" data-idx="<%= book.idx %>">수정</button>
 		<button class="btn btn-danger" id="btDelete">삭제</button>
 	</div>
-	<form action="/book" method="DELETE" name="deleteForm">
-		<!-- <input type="hidden" name="_method" value="DELETE"> -->
+	<form action="/book" method="POST" name="deleteForm">
+		<input type="hidden" name="_method" value="DELETE">
 		<input type="hidden" name="idx" value="<%= book.idx %>">
 	</form>
 </div>

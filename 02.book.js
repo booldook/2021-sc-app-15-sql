@@ -2,6 +2,7 @@
 const express = require('express')
 const app = express()
 const path = require('path')
+const methodInit = require('./modules/method-init')
 
 
 /*************** server init **************/
@@ -19,6 +20,7 @@ app.locals.tabTitle = 'Express 게시판'
 /*************** middleware ***************/
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
+app.use(methodInit())
 
 
 /*************** static init **************/

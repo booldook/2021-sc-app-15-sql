@@ -3,24 +3,28 @@
 <div class="form-wrapper wrapper">
 	<%- include('../inc/book/title-bar', { title, description }) %> 
 	<form action="/book" method="POST" name="saveForm">
+		<% if(book) { %>
+			<input type="hidden" name="_method" value="PUT">
+			<input type="hidden" name="idx" value="<%= book.idx %>">
+		<% } %>
 		<table>
 			<tbody>
 				<tr>
 					<td class="title require">도서명</td>
 					<td class="content">
-						<input type="text" name="title" class="form-control" placeholder="도서명" autofocus>
+						<input type="text" name="title" class="form-control" placeholder="도서명" autofocus value="<%= book ? book.title : '' %>">
 					</td>
 				</tr>
 				<tr>
 					<td class="title">저자</td>
 					<td class="content">
-						<input type="text" name="writer" class="form-control" placeholder="저자">
+						<input type="text" name="writer" class="form-control" placeholder="저자"  value="<%= book ? book.writer : '' %>">
 					</td>
 				</tr>
 				<tr>
 					<td class="title">요약 설명</td>
 					<td class="content">
-						<textarea name="content" class="form-control" placeholder="요약설명을 작성하세요"></textarea>
+						<textarea name="content" class="form-control" placeholder="요약설명을 작성하세요"><%= book ? book.content : '' %></textarea>
 					</td>
 				</tr>
 				<tr>
@@ -32,7 +36,9 @@
 			</tbody>
 		</table>
 		<div class="btn-wrap p-3 text-center">
-			<button class="btn btn-success" id="btSave">저장</button>
+			<button class="btn btn-success" id="btSave">
+				<%= book ? '수정' : '저장' %>
+			</button>
 			<button class="btn btn-danger" type="reset">다시작성</button>
 		</div>
 	</form>

@@ -20,10 +20,10 @@ router.use('/', listRouter)				// HTML/GET: 리스트페이지
 module.exports = router
 
 /* 
-GET  		/book,/book/list		페이지리스트 LIST - 1page
-GET  		/book/list/:page		페이지리스트 LIST - 해당페이지
+GET  		/book, /book/:page	페이지리스트 LIST - page
 GET  		/book/view/1				상세리스트 VIEW
-GET  		/book/update/1			상세리스트 UPDATE
+GET  		/book/form					신규 CREATE
+GET  		/book/form/1				수정 UPDATE
 POST 		/book								저장 save
 PUT  		/book								업데이트 update
 DELETE 	/book								삭제 delete

@@ -1,7 +1,6 @@
 .view-wrapper table {width: 100%; border: 1px solid #ddd;}
-.view-wrapper table td {padding: .75em; border-bottom: 1px solid #dfdfdf;}
-.view-wrapper table td.title {width: 160px;}
-.view-wrapper table textarea {height: 160px;}
-.view-wrapper table td.require::after {display: inline-block; content: '*'; color: #f10; margin-left: .5em; font-size: 1.25em;}
+.view-wrapper table td {padding: 1em; border-bottom: 1px solid #dfdfdf;}
+.view-wrapper table td.title {width: 160px; color: #777; font-size: .875em;}
+.view-wrapper table .content-tr td:last-child {line-height: 1.25;}
 
 .book-img {width: 120px;}

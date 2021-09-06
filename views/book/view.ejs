@@ -32,9 +32,14 @@
 			</tr>
 		</tbody>
 	</table>
-	<div class="btn-wrap p-3 text-center">
-		<button class="btn btn-success" id="btSave">저장</button>
-		<button class="btn btn-danger" type="reset">다시작성</button>
+	<div class="btn-wrap py-3 d-flex">
+		<a href="/book" class="btn btn-primary">리스트</a>
+		<button class="btn btn-success ml-auto mr-1" id="btUpdate" data-idx="<%= book.idx %>">수정</button>
+		<button class="btn btn-danger" id="btDelete">삭제</button>
 	</div>
+	<form action="/book" method="DELETE" name="deleteForm">
+		<!-- <input type="hidden" name="_method" value="DELETE"> -->
+		<input type="hidden" name="idx" value="<%= book.idx %>">
+	</form>
 </div>
 <%- include('../inc/foot', { js }) %> 

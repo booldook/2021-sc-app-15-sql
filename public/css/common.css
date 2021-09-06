@@ -3,6 +3,8 @@
 
 html, body {font-family: 'Noto Sans KR', sans-serif;}
 
+body {padding-bottom: 120px;}
+
 .wrapper {max-width: 992px; margin: auto; padding: 2em 1em;}
 
 .header-wrapper {background-color: darkslategrey; color: #f9f9f9; display: flex; justify-content: space-between;}

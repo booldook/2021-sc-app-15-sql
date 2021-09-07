@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>업로드 예제</title>
+	<link rel="stylesheet" href="/css/all.min.css">
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/base.css">
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/moment.min.js"></script>
+	<script src="/js/lodash.min.js"></script>
+	<script src="/js/util.js"></script>
+</head>
+<body>
+	<div class="container my-3 py-3 border">
+		<form action="/file" method="POST">
+			<div class="py-1"><input type="text" name="title" class="form-control"></div>
+			<div class="py-1"><input type="file" name="upfile" class="form-control-file"></div>
+			<div class="py-1"><button class="btn btn-primary">저장</button></div>
+		</form>
+	</div>
+</body>
+</html>

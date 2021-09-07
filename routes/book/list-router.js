@@ -7,16 +7,17 @@ const { pool } = require('../../modules/mysql-init')
 const createPager = require('../../modules/pager-init')
 
 router.get(['/', '/:page'], async (req, res, next) => {
+	let sql, values;
 	try {
-		let sql = "SELECT COUNT(idx) FROM books"
-		const [[cnt]] = await pool.query(sql)
+		sql = "SELECT COUNT(idx) FROM books"
+		const [[cnt]] = await pool.execute(sql)
 		const totalRecord = cnt['COUNT(idx)']
-		const page = req.params.page || 1
-		const pager = createPager(page, totalRecord, 2, 3)
+		const page = Number(req.params.page || 1)
+		const pager = createPager(page, totalRecord, 5, 3)
 
 		sql = 'SELECT * FROM books ORDER BY idx DESC LIMIT ?, ?';
-		const values = [pager.startIdx, pager.listCnt]
-		const [rs] = await pool.query(sql, values)
+		values = [pager.startIdx.toString(), pager.listCnt.toString()]
+		const [rs] = await pool.execute(sql, values)
 
 		const books = rs.map(v => {
 			v.createdAt = moment(v.createdAt).format('YYYY-MM-DD')

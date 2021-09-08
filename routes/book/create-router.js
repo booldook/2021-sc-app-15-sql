@@ -13,10 +13,12 @@ router.post('/', uploader.fields([{name: 'cover'}, {name: 'upfile'}]), async (re
 		const [rs] = await pool.execute(sql, values)
 
 		if(req.files) { // 첨부파일이 존재함
-			const { originalname, filename, mimetype, size } = req.file
-			sql = 'INSERT INTO files SET fidx=?, oriname=?, savename=?, mimetype=?, size=?'
-			values = [rs.insertId, originalname, filename, mimetype, size]
-			const [rs2] = await pool.execute(sql, values)
+			for(let [k, [v]] of Object.entries(req.files)) {
+				let { originalname, filename, mimetype, size } = v
+				sql = 'INSERT INTO files SET fidx=?, oriname=?, savename=?, mimetype=?, size=?, fieldname=?'
+				values = [rs.insertId, originalname, filename, mimetype, size, k.substr(0, 1).toUpperCase()]
+				await pool.execute(sql, values)
+			}
 		}
 		res.redirect('/book')
 	}

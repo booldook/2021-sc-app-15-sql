@@ -9,6 +9,7 @@
 				<th>도서명</th>
 				<th>저자</th>
 				<th>요약설명</th>
+				<th>파일</th>
 				<th>등록일</th>
 				<th>상태</th>
 			</tr>
@@ -20,6 +21,9 @@
 				<td class="text-left"><%= book.title %></td>
 				<td><%= book.writer %></td>
 				<td class="text-left"><%= book.content %></td>
+				<td>
+					<%= book.icon ? `<img src="${book.icon}" class="icon">` : '' %>
+				</td>
 				<td><%= book.createdAt %></td>
 				<td><%= book.status %></td>
 			</tr>

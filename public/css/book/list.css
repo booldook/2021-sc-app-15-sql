@@ -1,1 +1,10 @@
 .book-tbl tbody tr {cursor: pointer;}
+.book-tbl th:nth-child(1) {width: 10%;}
+.book-tbl th:nth-child(2) {width: 15%;}
+.book-tbl th:nth-child(3) {width: 15%;}
+.book-tbl th:nth-child(4) {}
+.book-tbl th:nth-child(5) {width: 10%;}
+.book-tbl th:nth-child(6) {width: 15%;}
+.book-tbl th:nth-child(7) {width: 10%;}
+.book-tbl .icon-td {padding: .25em 0; vertical-align: middle; text-align: center;}
+.book-tbl .icon-td .icon {width: 24px;}

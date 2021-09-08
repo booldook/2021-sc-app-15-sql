@@ -18,11 +18,13 @@
 		<% for(let book of books) { %>
 			<tr data-idx="<%= book.idx %>">
 				<td><%= book.idx %></td>
-				<td class="text-left"><%= book.title %></td>
+				<td><%= book.title %></td>
 				<td><%= book.writer %></td>
 				<td class="text-left"><%= book.content %></td>
-				<td>
-					<%= book.icon ? `<img src="${book.icon}" class="icon">` : '' %>
+				<td class="icon-td">
+					<% if(book.icon) { %>
+						<img src="<%= book.icon %>" class="icon">
+					<% } %>
 				</td>
 				<td><%= book.createdAt %></td>
 				<td><%= book.status %></td>

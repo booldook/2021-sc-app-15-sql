@@ -27,7 +27,11 @@
 			<tr>
 				<td class="title">도서 커버 이미지</td>
 				<td class="content">
-					<img src="//via.placeholder.com/120x160?text=No+Cover" alt="도서커버" class="book-img">
+					<% if(book.savename) { %> 
+						<img src="<%= book.savename %>" alt="도서커버" class="book-img">
+					<% } else { %>
+						<img src="//via.placeholder.com/120x160?text=No+Cover" alt="도서커버" class="book-img">
+					<% } %>
 				</td>
 			</tr>
 		</tbody>

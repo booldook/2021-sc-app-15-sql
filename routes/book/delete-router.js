@@ -6,7 +6,8 @@ const { pool } = require('../../modules/mysql-init')
 
 router.delete('/', async (req, res, next) => {
 	try {
-		const sql = "DELETE FROM books WHERE idx=?"
+		// const sql = "DELETE FROM books WHERE idx=?"
+		const sql = "UPDATE books SET status='3' WHERE idx=?"
 		const values = [req.body.idx]
 		const [rs] = await pool.execute(sql, values)
 		res.redirect('/book')

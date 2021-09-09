@@ -20,10 +20,15 @@
 				<td><%= book.idx %></td>
 				<td><%= book.title %></td>
 				<td><%= book.writer %></td>
-				<td class="text-left"><%= book.content %></td>
-				<td class="icon-td">
+				<td class="content-td">
 					<% if(book.icon) { %>
 						<img src="<%= book.icon %>" class="icon">
+					<% } %>&nbsp;
+					<%= book.content %>
+				</td>
+				<td class="cover-td">
+					<% if(book.cover) { %>
+						<img src="<%= book.cover %>" class="cover">
 					<% } %>
 				</td>
 				<td><%= book.createdAt %></td>

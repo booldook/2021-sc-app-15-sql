@@ -6,5 +6,7 @@
 .book-tbl th:nth-child(5) {width: 10%;}
 .book-tbl th:nth-child(6) {width: 15%;}
 .book-tbl th:nth-child(7) {width: 10%;}
-.book-tbl .icon-td {padding: .25em 0; vertical-align: middle; text-align: center;}
-.book-tbl .icon-td .icon {width: 24px;}
+.book-tbl .content-td {padding: .25em 0; vertical-align: middle; text-align: left;}
+.book-tbl .cover-td {padding: .25em 0; vertical-align: middle;}
+.book-tbl .content-td .icon {width: 24px;}
+.book-tbl .cover-td .cover {max-width: 28px; max-height: 28px;}

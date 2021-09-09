@@ -26,7 +26,7 @@ router.get('/:idx', async (req, res, next) => {
 		book.status = chgStatus(book.status)
 		book.cover = book.savename ? relPath(book.savename) : null
 		book.upfile = book.savename2 ? relPath(book.savename2) : null
-		book.isImg = isImg(book.savename2)
+		book.isImg = isImg(book.savename2 || '')
 
 		const title = '도서 상세 정보'
 		const description = '선택하신 도서의 상세 정보 입니다.'

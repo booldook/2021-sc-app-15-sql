@@ -27,13 +27,24 @@
 			<tr>
 				<td class="title">도서 커버 이미지</td>
 				<td class="content">
-					<% if(book.savename) { %> 
-						<img src="<%= book.savename %>" alt="도서커버" class="book-img">
+					<% if(book.cover) { %> 
+						<img src="<%= book.cover %>" alt="도서커버" class="book-img">
 					<% } else { %>
 						<img src="//via.placeholder.com/120x160?text=No+Cover" alt="도서커버" class="book-img">
 					<% } %>
 				</td>
 			</tr>
+			<% if(book.upfile) { %>
+				<tr>
+					<td class="title">첨부 파일</td>
+					<td class="content">
+						<% if(book.isImg) { %> 
+							<img src="<%= book.upfile %>" alt="도서커버" class="book-img">
+						<% } %>
+						<a href="/book/download/<%= book.fid2 %>" class="my-2 d-block"><%= book.oriname2 || '' %></a>
+					</td>
+				</tr>
+			<% } %>
 		</tbody>
 	</table>
 	<div class="btn-wrap py-3 d-flex">

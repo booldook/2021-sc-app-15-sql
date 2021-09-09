@@ -10,8 +10,8 @@ router.get('/:idx', async (req, res, next) => {
 		sql = `
 		SELECT 
 		B.*, 
-		F.oriname, F.savename, F.fidx AS fid, 
-		F2.oriname AS oriname2, F2.savename AS savename2, F2.fidx AS fid2 
+		F.oriname, F.savename, F.idx AS id, 
+		F2.oriname AS oriname2, F2.savename AS savename2, F2.idx AS id2 
 		FROM books B 
 		LEFT JOIN files F 
 		ON B.idx = F.fidx AND F.fieldname = 'C'

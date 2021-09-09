@@ -1,5 +1,6 @@
 const createError = require('http-errors')
 const path = require('path')
+const fs = require('fs-extra')
 
 const error = (code, msg) => {
 	let message = '서버 에러입니다. 관리자에게 문의하세요.'
@@ -45,6 +46,20 @@ const zipExt = ['zip', 'alz']
 const exts = { imgExt, mediaExt, docExt, zipExt }
 
 const relPath = file => `/uploads/${file.split('_')[0]}/${file}`
+const absPath = file => path.join(__dirname, `../storages/${file.split('_')[0]}/${file}`)
+const moveFile = async file => {
+	try {
+		let savePath = path.join(__dirname, '../storages-remove', file.split('_')[0]) 
+		let oldPath = absPath(file)
+		await fs.ensureDir(savePath)
+		savePath = path.join(savePath, file)
+		await fs.move(oldPath, savePath)
+		return true
+	}
+	catch(err) {
+		return err
+	}
+}
 
 const getIcon = file => {
 	const ext = path.extname(file).substr(1)
@@ -58,4 +73,4 @@ const getIcon = file => {
 const isImg = file => imgExt.includes(path.extname(file).substr(1)) ? true : false
 
 
-module.exports = { error, location, cutTail, chgStatus, exts, relPath, getIcon, isImg }
+module.exports = { error, location, cutTail, chgStatus, exts, relPath, absPath, getIcon, isImg, moveFile }

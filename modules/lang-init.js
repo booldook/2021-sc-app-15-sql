@@ -7,7 +7,9 @@ module.exports = _lang => {
 					NOT_FOUND 		: '존재하지 않는 데이터 입니다.',
 				},
 				GLOBAL: {
-					TAB_TITLE			: 'Express 게시판'
+					LOGO					: '도서관리시스템',
+					TAB_TITLE			: 'Express 게시판',
+					NAVI: 				['도서 등록', '도서 리스트']
 				},
 				LIST: {
 					TITLE 				: '도서 목록',
@@ -32,7 +34,9 @@ module.exports = _lang => {
 					NOT_FOUND 		: 'Data Not Found',
 				},
 				GLOBAL: {
-					TAB_TITLE			: 'Express Board'
+					LOGO					: 'BOOK MANAGEMENT SYSTEM',
+					TAB_TITLE			: 'Express Board',
+					NAVI: 				['Book Register', 'Book List']
 				},
 				LIST: {
 					TITLE 				: 'Book List',

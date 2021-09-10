@@ -6,6 +6,7 @@ module.exports = (req, res, next) => {
 		req.url = urls.join('/')
 	}
 	req.lang = require('../modules/lang-init')(lang || 'ko')
-	req.app.locals = { ...req.app.locals, ...req.lang }
+	req.app.locals = { ...req.app.locals, ...req.lang, LANG: lang || 'ko' }
+	console.log(req.app.locals)
 	next()
 }

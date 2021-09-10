@@ -1,8 +1,8 @@
 <%- include('../inc/head', { css }) %> 
 <%- include('../inc/header') %> 
 <div class="form-wrapper wrapper">
-	<%- include('../inc/title-book', { title, description }) %> 
-	<form action="/book" method="POST" name="saveForm" enctype="multipart/form-data">
+	<%- include('../inc/title-book') %> 
+	<form action="/<%= LANG %>/book" method="POST" name="saveForm" enctype="multipart/form-data">
 		<% if(book) { %>
 			<input type="hidden" name="_method" value="PUT">
 			<input type="hidden" name="idx" value="<%= book.idx %>">

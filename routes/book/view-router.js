@@ -6,6 +6,7 @@ const { pool } = require('../../modules/mysql-init')
 const { NO_EXIST } = require('../../modules/lang-init')
 
 router.get('/:idx', async (req, res, next) => {
+	req.app.locals.PAGE = 'VIEW'
 	let sql, values
 	try {
 		sql = `
@@ -26,12 +27,10 @@ router.get('/:idx', async (req, res, next) => {
 			book.upfile = book.savename2 ? relPath(book.savename2) : null
 			book.isImg = isImg(book.savename2 || '')
 
-			const title = '도서 상세 정보'
-			const description = '선택하신 도서의 상세 정보 입니다.'
 			const css = 'book/view'
 			const js = 'book/view'
 
-			res.status(200).render('book/view', { title, description, css, js, book })
+			res.status(200).render('book/view', { css, js, book })
 		}
 		else next(error(400, NO_EXIST))
 	}

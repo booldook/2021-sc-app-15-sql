@@ -5,6 +5,7 @@ const { pool } = require('../../modules/mysql-init')
 const { NO_EXIST } = require('../../modules/lang-init')
 
 router.get('/', (req, res, next) => {
+	req.app.locals.PAGE = 'CREATE'
 	const title = '도서 등록'
 	const description = '등록할 도서를 아래에서 입력하세요.'
 	const js = 'book/form'
@@ -14,6 +15,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/:idx', async (req, res, next) => {
+	req.app.locals.PAGE = 'UPDATE'
 	try {
 		const sql = `
 		SELECT B.*, 

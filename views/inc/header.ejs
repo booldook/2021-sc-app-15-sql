@@ -1,17 +1,17 @@
 <header class="header-wrapper">
-	<h1 class="logo"><a href="/book">도서관리시스템</a></h1>
+	<h1 class="logo"><a href="/<%= LANG %>/book"><%= GLOBAL.LOGO %></a></h1>
 	<nav class="navi-wrap">
-		<a href="/book/form" class="navi">도서등록</a>
-		<a href="/book" class="navi">도서리스트</a>
+		<a href="/<%= LANG %>/book/form" class="navi"><%= GLOBAL.NAVI[0] %></a>
+		<a href="/<%= LANG %>/book" class="navi"><%= GLOBAL.NAVI[1] %></a>
 	</nav>
 </header>
 
 <section class="title-wrapper">
 	<div class="wrapper">
-		<h2 class="title-wrap"><%= title %></h2>
-		<p class="desc-wrap"><%= description %></p>
+		<h2 class="title-wrap"><%= eval(PAGE+'.TITLE') %></h2>
+		<p class="desc-wrap"><%= eval(PAGE+'.DESC') %></p>
 		<div class="btn-wrap">
-			<a href="/book/form" class="btn btn-primary">도서등록</a>
+			<a href="/<%= LANG %>/book/form" class="btn btn-primary"><%= eval(PAGE+'.TITLE') %></a>
 		</div>
 	</div>
 </section>

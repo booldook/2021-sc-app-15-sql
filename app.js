@@ -29,9 +29,12 @@ app.use('/uploads', express.static(path.join(__dirname, 'storages')))
 
 
 /*************** router init **************/
+const langMW = require('./middlewares/lang-mw')
 const bookRouter = require('./routes/book')
 
+app.use(langMW)
 app.use('/book', bookRouter)
+
 
 
 /**************** error init **************/

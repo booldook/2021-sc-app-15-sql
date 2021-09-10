@@ -7,5 +7,5 @@ function onDelete(e) {
 
 document.querySelector('#btUpdate').addEventListener('click', onUpdate)
 function onUpdate(e) {
-	location.href = '/book/form/' + this.dataset['idx'];
+	location.href = '/'+this.dataset['lang']+'/book/form/' + this.dataset['idx'];
 }

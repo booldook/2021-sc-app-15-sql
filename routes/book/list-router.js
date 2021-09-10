@@ -5,6 +5,7 @@ const router = express.Router()
 const { error, cutTail, chgStatus, getIcon, relPath } = require('../../modules/util')
 const { pool } = require('../../modules/mysql-init')
 const createPager = require('../../modules/pager-init')
+const { ERR_NOT_FOUND, TITLE_LIST, DESC_LIST } = require('../../modules/lang-init')('ko')
 
 router.get(['/', '/:page'], async (req, res, next) => {
 	let sql, values;
@@ -34,8 +35,8 @@ router.get(['/', '/:page'], async (req, res, next) => {
 			v.cover = v.cover ? relPath(v.cover) : null
 			v.icon = v.icon ? getIcon(v.icon) : null
 		})
-		const title = '도서 목록'
-		const description = '등록된 도서들의 리스트 입니다.'
+		const title = TITLE_LIST
+		const description = DESC_LIST
 		const js = 'book/list'
 		const css = 'book/list'
 		// console.timeEnd('start')

@@ -9,7 +9,7 @@ router.delete('/', async (req, res, next) => {
 	let sql
 	try {
 		// sql = "DELETE FROM books WHERE idx=?"
-		sql = "UPDATE books SET status='3' WHERE idx = " + req.body.idx
+		sql = "UPDATE books SET status='0' WHERE idx = " + req.body.idx
 		await pool.execute(sql)
 
 		sql = "UPDATE files SET status='0' WHERE fidx = " + req.body.idx

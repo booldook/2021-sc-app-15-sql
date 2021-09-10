@@ -5,8 +5,11 @@ module.exports = (req, res, next) => {
 		var [lang] = urls.splice(1, 1) 			// /en/book -> /book
 		req.url = urls.join('/')
 	}
-	req.lang = require('../modules/lang-init')(lang || 'ko')
-	req.app.locals = { ...req.app.locals, ...req.lang, LANG: lang || 'ko' }
-	console.log(req.app.locals)
+	req.lang = lang || 'ko'
+	req.app.locals = { 
+		...req.app.locals, 
+		...require('../modules/lang-init')(req.lang), 
+		LANG: req.lang 
+	}
 	next()
 }

@@ -1,6 +1,6 @@
 document.querySelector('#btDelete').addEventListener('click', onDelete)
 function onDelete(e) {
-	if(confirm('정말로 삭제하시겠습니까?')) {
+	if(confirm(this.dataset['msg'])) {
 		document.deleteForm.submit();
 	}
 }

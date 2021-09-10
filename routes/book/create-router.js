@@ -20,7 +20,7 @@ router.post('/', uploader.fields([{name: 'cover'}, {name: 'upfile'}]), async (re
 				await pool.execute(sql, values)
 			}
 		}
-		res.redirect('/book')
+		res.redirect(`/${req.lang}/book`)
 	}
 	catch(err) {
 		next(error(500, err))

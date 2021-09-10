@@ -9,7 +9,7 @@ router.put('/', async (req, res, next) => {
 		const sql = 'UPDATE books SET title=?, writer=?, content=? WHERE idx=?'
 		const values = [title, writer, content, idx]
 		const [rs] = await pool.execute(sql, values)
-		if(rs.affectedRows === 1) res.redirect('/book')
+		if(rs.affectedRows === 1) res.redirect(`/${req.lang}/book`)
 		else next(error(500, '데이터가 수정되지 않았습니다.'))
 	}
 	catch(err) {

@@ -5,54 +5,54 @@
 	<table>
 		<tbody>
 			<tr>
-				<td class="title">도서명</td>
+				<td class="title"><%= FIELD.TITLE %></td>
 				<td class="content"><%= book.title %></td>
 			</tr>
 			<tr>
-				<td class="title">저자</td>
+				<td class="title"><%= FIELD.WRITER %></td>
 				<td class="content"><%= book.writer %></td>
 			</tr>
 			<tr>
-				<td class="title">등록일</td>
+				<td class="title"><%= FIELD.DATE %></td>
 				<td class="content"><%= book.createdAt %></td>
 			</tr>
 			<tr>
-				<td class="title">판매여부</td>
+				<td class="title"><%= FIELD.STATUS %></td>
 				<td class="content"><%= book.status %></td>
 			</tr>
 			<tr class="content-tr">
-				<td class="title">요약 설명</td>
+				<td class="title"><%= FIELD.CONTENT %></td>
 				<td class="content"><%= book.content %></td>
 			</tr>
 			<tr>
-				<td class="title">도서 커버 이미지</td>
+				<td class="title"><%= FIELD.COVER %></td>
 				<td class="content">
 					<% if(book.cover) { %> 
-						<img src="<%= book.cover %>" alt="도서커버" class="book-img">
+						<img src="<%= book.cover %>" alt="<%= FIELD.COVER %>" class="book-img">
 					<% } else { %>
-						<img src="//via.placeholder.com/120x160?text=No+Cover" alt="도서커버" class="book-img">
+						<img src="//via.placeholder.com/120x160?text=No+Cover" alt="<%= FIELD.COVER %>" class="book-img">
 					<% } %>
 				</td>
 			</tr>
 			<% if(book.upfile) { %>
 				<tr>
-					<td class="title">첨부 파일</td>
+					<td class="title"><%= FIELD.UPFILE %></td>
 					<td class="content">
 						<% if(book.isImg) { %> 
-							<img src="<%= book.upfile %>" alt="도서커버" class="book-img">
+							<img src="<%= book.upfile %>" alt="<%= FIELD.UPFILE %>" class="book-img">
 						<% } %>
-						<a href="/book/download/<%= book.id2 %>" class="my-2 d-block"><%= book.oriname2 || '' %></a>
+						<a href="/<%= LANG %>/book/download/<%= book.id2 %>" class="my-2 d-block"><%= book.oriname2 || '' %></a>
 					</td>
 				</tr>
 			<% } %>
 		</tbody>
 	</table>
 	<div class="btn-wrap py-3 d-flex">
-		<a href="/book" class="btn btn-primary">리스트</a>
-		<button class="btn btn-success ml-auto mr-1" id="btUpdate" data-idx="<%= book.idx %>">수정</button>
-		<button class="btn btn-danger" id="btDelete">삭제</button>
+		<a href="/<%= LANG %>/book" class="btn btn-primary"><%= BT.LIST %></a>
+		<button class="btn btn-success ml-auto mr-1" id="btUpdate" data-idx="<%= book.idx %>"><%= BT.UPDATE %></button>
+		<button class="btn btn-danger" id="btDelete" data-msg="<%= MSG.DELETE %>"><%= BT.DELETE %></button>
 	</div>
-	<form action="/book" method="POST" name="deleteForm">
+	<form action="/<%= LANG %>/book" method="POST" name="deleteForm">
 		<input type="hidden" name="_method" value="DELETE">
 		<input type="hidden" name="idx" value="<%= book.idx %>">
 	</form>

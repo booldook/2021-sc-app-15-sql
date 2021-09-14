@@ -1,5 +1,7 @@
 <%- include('../inc/head', { css }) %> 
-<%- include('../inc/header') %> 
+<%- include('../inc/header') %>
+<script src="/js/promise.polyfill.min.js"></script> 
+<script src="/js/axios.min.js"></script> 
 <div class="form-wrapper wrapper">
 	<%- include('../inc/title-book') %> 
 	<form action="/<%= LANG %>/book" method="POST" name="saveForm" enctype="multipart/form-data">

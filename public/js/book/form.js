@@ -20,9 +20,10 @@ function onRemoveFile(e) {
 	var parent = this.parentNode;
 	axios.delete('/'+lang+'/book/api/file', { params: { idx: idx } }).then(onSucess).catch(onError);
 	function onSucess(r) {
-	
+		if(r.data.code == 200) parent.remove();
 	}
 	function onError(err) {
-		
+		console.log(err);
+		console.log(err.response);
 	}
 }

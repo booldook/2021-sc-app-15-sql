@@ -23,6 +23,8 @@ const error = (code, msg) => {
 		default:
 			break;
 	}
+	console.log(code, message, msg)
+	console.log(createError(code || 500, message + '^^' + msg))
 	return createError(code || 500, message + '^^' + msg)
 }
 

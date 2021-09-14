@@ -7,9 +7,9 @@ body {padding-bottom: 120px;}
 
 .wrapper {max-width: 992px; margin: auto; padding: 2em 1em;}
 
-.header-wrapper {background-color: darkslategrey; color: #f9f9f9; display: flex; justify-content: space-between;}
+.header-wrapper {background-color: darkslategrey; color: #f9f9f9; display: flex; align-items: center;}
 .header-wrapper h1.logo {font-size: 1.25em; padding: .75em;}
-.header-wrapper .navi-wrap {display: flex;}
+.header-wrapper .navi-wrap {display: flex; margin-left: auto;}
 .header-wrapper .navi-wrap .navi {padding: 1em 1.5em;}
 .header-wrapper .navi-wrap .navi:hover {background-color: mistyrose; color:darkslategrey;}
 
@@ -17,6 +17,11 @@ body {padding-bottom: 120px;}
 .header-wrapper a:visited {text-decoration: none; color: inherit;}
 .header-wrapper a:hover {text-decoration: none; color: inherit;}
 .header-wrapper a:active {text-decoration: none; color: inherit;}
+
+.header-wrapper .lang-wrap {margin: 0 1.5em; font-size: .875em;}
+.header-wrapper .lang-wrap .navi {opacity: .5;}
+.header-wrapper .lang-wrap .navi.active {opacity: .85;}
+.header-wrapper .lang-wrap span {opacity: .5;}
 
 .title-wrapper {padding: 2em; background-color: #efefef;}
 .title-wrapper .title-wrap {font-size: 2em; margin-bottom: .5em;}

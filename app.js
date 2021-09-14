@@ -20,7 +20,7 @@ app.locals.tabTitle = 'Express 게시판'
 /*************** middleware ***************/
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-app.use(methodInit())
+app.use(methodInit())	// method-override
 
 
 /*************** static init **************/

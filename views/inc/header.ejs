@@ -4,6 +4,11 @@
 		<a href="/<%= LANG %>/book/form" class="navi"><%= GLOBAL.NAVI[0] %></a>
 		<a href="/<%= LANG %>/book" class="navi"><%= GLOBAL.NAVI[1] %></a>
 	</nav>
+	<nav class="lang-wrap">
+		<a href="/ko/book" class="navi <%= (LANG === 'ko' ? 'active': '') %>">한국어</a>
+		<span> | </span>
+		<a href="/en/book" class="navi <%= (LANG === 'en' ? 'active': '') %>">영어</a>
+	</nav>
 </header>
 
 <section class="title-wrapper">

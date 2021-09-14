@@ -30,12 +30,25 @@
 				<tr>
 					<td class="title"><%= FIELD.COVER %></td>
 					<td class="content">
+						<% if(book && book.cover) { %>
+							<div class="file-wrap">
+								<img src="<%= book.cover.path %>" alt="<%= book.cover.ori %>" class="img">
+								<div class="file"><%= book.cover.ori %></div>
+								<button class="btn btn-sm btn-danger" data-idx="<%= book.cover.idx %>" id="btRemoveCover">삭제</button>
+							</div>
+						<% } %>
 						<input type="file" name="cover" class="form-control-file">
 					</td>
 				</tr>
 				<tr>
 					<td class="title"><%= FIELD.UPFILE %></td>
 					<td class="content">
+						<% if(book && book.upfile) { %>
+							<div class="file-wrap">
+								<div class="file"><%= book.upfile.ori %></div>
+								<button class="btn btn-sm btn-danger" data-idx="<%= book.upfile.idx %>" id="btRemoveFile">삭제</button>
+							</div>
+						<% } %>
 						<input type="file" name="upfile" class="form-control-file">
 					</td>
 				</tr>

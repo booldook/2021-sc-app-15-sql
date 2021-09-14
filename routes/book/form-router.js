@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { error } = require('../../modules/util')
+const { error, relPath } = require('../../modules/util')
 const { pool } = require('../../modules/mysql-init')
 const { NO_EXIST } = require('../../modules/lang-init')
 
@@ -33,6 +33,8 @@ router.get('/:idx', async (req, res, next) => {
 			const description = '수정할 도서 내용을 아래에서 변경하세요.'
 			const js = 'book/form'
 			const css = 'book/form'
+			book.cover = book.ori ? { ori: book.ori, path: relPath(book.name), idx: book.fid } : null
+			book.upfile = book.ori2 ? { ori: book.ori2, idx: book.fid2 } : null
 			res.status(200).render('book/form', { title, description, css, js, book })
 		}
 		else  next(error(400, NO_EXIST))

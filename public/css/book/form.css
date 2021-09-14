@@ -4,3 +4,6 @@
 .form-wrapper table td.title {width: 160px;}
 .form-wrapper table textarea {height: 160px;}
 .form-wrapper table td.require::after {display: inline-block; content: '*'; color: #f10; margin-left: .5em; font-size: 1.25em;}
+.form-wrapper .file-wrap {display: flex; align-items: flex-end; margin-bottom: .5em; padding-bottom: .5em; border-bottom: 1px dotted #ccc;}
+.form-wrapper .file-wrap .img {width: 80px; margin-right: .5em;}
+.form-wrapper .file-wrap .file {margin-right: .5em;}

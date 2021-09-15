@@ -36,7 +36,7 @@
 							<div class="file-wrap">
 								<img src="<%= book.cover.path %>" alt="<%= book.cover.ori %>" class="img">
 								<div class="file"><%= book.cover.ori %></div>
-								<button type="button" class="btn btn-sm btn-danger" data-lang="<%= LANG %>"  data-idx="<%= book.cover.idx %>" id="btRemoveCover">삭제</button>
+								<button type="button" class="btn btn-sm btn-danger" data-idx="<%= book.cover.idx %>" id="btRemoveCover">삭제</button>
 							</div>
 						<% } %>
 						<input type="file" name="cover" class="form-control-file">
@@ -48,7 +48,7 @@
 						<% if(book && book.upfile) { %>
 							<div class="file-wrap">
 								<div class="file"><%= book.upfile.ori %></div>
-								<button type="button" class="btn btn-sm btn-danger" data-lang="<%= LANG %>"  data-idx="<%= book.upfile.idx %>" id="btRemoveFile">삭제</button>
+								<button type="button" class="btn btn-sm btn-danger" data-idx="<%= book.upfile.idx %>" id="btRemoveFile">삭제</button>
 							</div>
 						<% } %>
 						<input type="file" name="upfile" class="form-control-file">

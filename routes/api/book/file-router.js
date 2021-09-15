@@ -1,8 +1,8 @@
 const path = require('path')
 const express = require('express')
 const router = express.Router()
-const { error, moveFile } = require('../../modules/util')
-const { pool } = require('../../modules/mysql-init')
+const { error, moveFile } = require('../../../modules/util')
+const { pool } = require('../../../modules/mysql-init')
 
 router.delete('/:idx', async (req, res, next) => {
 	try {
@@ -20,7 +20,7 @@ router.delete('/:idx', async (req, res, next) => {
 		res.status(200).json({ code: 200, result: 'success' })
 	}
 	catch(err) {
-		next(error(err))
+		res.status(500).json(err)
 	}
 })
 

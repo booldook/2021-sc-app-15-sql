@@ -3,7 +3,7 @@ const moment = require('moment')
 const express = require('express')
 const router = express.Router()
 const createError = require('http-errors')
-const { error, cutTail, chgStatus, getIcon, relPath } = require('../../modules/util')
+const { cutTail, chgStatus, getIcon, relPath } = require('../../modules/util')
 const { pool } = require('../../modules/mysql-init')
 const createPager = require('../../modules/pager-init')
 

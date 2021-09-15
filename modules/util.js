@@ -1,37 +1,5 @@
-const createError = require('http-errors')
 const path = require('path')
 const fs = require('fs-extra')
-
-const error = (code) => {
-	let message = '서버 에러입니다. 관리자에게 문의하세요.'
-	switch(code) {
-		case 400:
-			message = '요청이 잘못되었습니다.'
-			break;
-		case 401:
-			message = '사용자 인증이 처리되지 않았습니다.'
-			break;
-		case 403:
-			message = '허가되지 않은 접근입니다.'
-			break;
-		case 404:
-			message = '경로를 찾을 수 없습니다.'
-			break;
-		case 500:
-			message = '서버 내부 에러입니다. 잠시후 다시 시도해 주세요.'
-			break;
-		default:
-			if(code.sqlMessage) {	// SQL Error
-				message  = code.sqlMessage + ':::::'
-				message += 'CODE: ' + code.code + '\n'
-				message += 'ERR NO: ' + code.errno + '\n'
-				message += 'SQL: ' + code.sql + '\n'
-				message += 'STATE: ' + code.sqlState + '\n'
-			}
-			break;
-	}
-	return createError(code, message)
-}
 
 const location = src => path.join(__dirname, '../', src)
 
@@ -80,4 +48,4 @@ const getIcon = file => {
 const isImg = file => imgExt.includes(path.extname(file).substr(1)) ? true : false
 
 
-module.exports = { error, location, cutTail, chgStatus, exts, relPath, absPath, getIcon, isImg, moveFile }
+module.exports = { location, cutTail, chgStatus, exts, relPath, absPath, getIcon, isImg, moveFile }

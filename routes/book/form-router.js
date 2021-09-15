@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const { error, relPath } = require('../../modules/util')
+const createError = require('http-errors')
+const { relPath } = require('../../modules/util')
 const { pool } = require('../../modules/mysql-init')
 const { NO_EXIST } = require('../../modules/lang-init')
 
@@ -37,10 +38,10 @@ router.get('/:idx', async (req, res, next) => {
 			book.upfile = book.ori2 ? { ori: book.ori2, idx: book.fid2 } : null
 			res.status(200).render('book/form', { css, js, book })
 		}
-		else  next(error(400, NO_EXIST))
+		else next(createError(400, NO_EXIST))
 	}
 	catch(err) {
-		next(error(500, err))
+		next(createError(err))
 	}
 })
 

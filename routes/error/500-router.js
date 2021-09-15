@@ -1,5 +1,5 @@
 module.exports = (error, req, res, next) => {
-	const err = { status: error.status || 404 }
+	const err = { status: error.status }
 	if(error.sql) {
 		err.message = error.message;
 		err.desc = '<b>CODE:</b> ' + error.code + '<br>'
@@ -9,7 +9,24 @@ module.exports = (error, req, res, next) => {
 	}
 	else {
 		err.message = error.message
-		err.desc = null
+		err.desc = '서버 에러입니다. 관리자에게 문의하세요.'
+		switch(error.status) {
+			case 400:
+				err.desc = '요청이 잘못되었습니다.'
+				break;
+			case 401:
+				err.desc = '사용자 인증이 처리되지 않았습니다.'
+				break;
+			case 403:
+				err.desc = '허가되지 않은 접근입니다.'
+				break;
+			case 404:
+				err.desc = '경로를 찾을 수 없습니다.'
+				break;
+			case 500:
+				err.desc = '서버 내부 에러입니다. 잠시후 다시 시도해 주세요.'
+				break;
+		}
 	}
 	res.render('error/error', err)
 }

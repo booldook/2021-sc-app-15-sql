@@ -9,9 +9,10 @@ router.post('/', uploader.fields([{name: 'cover'}, {name: 'upfile'}]), async (re
 	let sql, values
 	try {
 		const { title, writer, content, _method, idx } = req.body
-		sql = (_method === 'PUT' && idx) ? 'UPDATE books' : 'INSERT INTO books'
+		const isUpdate = (_method === 'PUT' && idx)
+		sql = isUpdate ? 'UPDATE books' : 'INSERT INTO books'
 		sql += ' SET title=?, writer=?, content=? '
-		sql += (_method === 'PUT' && idx) ? ' WHERE idx='+idx : ''
+		sql += isUpdate ? ' WHERE idx='+idx : ''
 		values = [title, writer, content]
 		const [rs] = await pool.execute(sql, values)
 		/*

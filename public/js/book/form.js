@@ -12,6 +12,10 @@ function onSubmit(e) {
 	this.submit();
 }
 
+// 	/언어/book/		www.myshop.co.kr		:3000
+// 	/book/ 				api.myshop.co.kr		:3001
+// 	/							admin.myshop.co.kr	:3002
+
 document.querySelector('#btRemoveCover').addEventListener('click', onRemoveFile);
 document.querySelector('#btRemoveFile').addEventListener('click', onRemoveFile);
 function onRemoveFile(e) {

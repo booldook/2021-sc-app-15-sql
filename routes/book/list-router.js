@@ -2,6 +2,7 @@ const path = require('path')
 const moment = require('moment')
 const express = require('express')
 const router = express.Router()
+const createError = require('http-errors')
 const { error, cutTail, chgStatus, getIcon, relPath } = require('../../modules/util')
 const { pool } = require('../../modules/mysql-init')
 const createPager = require('../../modules/pager-init')
@@ -42,7 +43,7 @@ router.get(['/', '/:page'], async (req, res, next) => {
 		res.status(200).render('book/list', { js, css, books, pager })
 	}
 	catch(err) {
-		next(error(err))
+		next(createError(err))
 	}
 })
 

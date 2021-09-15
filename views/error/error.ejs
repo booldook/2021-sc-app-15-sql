@@ -11,7 +11,8 @@
 		.wrapper .icon-wrap .img-wp img {width: 100px;}
 		.wrapper .icon-wrap .msg-wp {font-size: 1.5em; padding-left: 1em;}
 		.wrapper .icon-wrap .msg-wp :last-child {font-size: .75em; color: #555;}
-		.wrapper .content-wrap {padding: .75em 0; line-height: 1.25; color: #777; margin-bottom: 1em;}
+		.wrapper .content-wrap {padding: .75em 0; line-height: 1.25; color: #333; margin-bottom: 1em;}
+		.wrapper .content-wrap b {color: #777;}
 	</style>
 </head>
 <body>
@@ -22,14 +23,10 @@
 			</div>
 			<div class="msg-wp">
 				<div>ERROR <%= status %></div>
-				<% 
-				const msg = message.split('^^') 
-				const desc = (!msg[1] ||msg[1] == undefined || msg[1] == '' || msg[1] == 'undefined') ? msg[0] : msg[1];
-				%> 
-				<div><%= msg[0] %></div>
+				<div><%= message %></div>
 			</div>
 		</div>
-		<div class="content-wrap"><%= desc %></div>
+		<div class="content-wrap"><%- desc ? desc : message %></div>
 		<div class="link-wrap"><a href="/">메인으로 돌아가기</a></div>
 	</div>
 </body>

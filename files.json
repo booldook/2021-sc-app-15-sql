@@ -1,0 +1,22 @@
+{
+	"cover": [{
+		"fieldname": "cover",
+		"originalname": "그림1.jpg",
+		"encoding": "7bit",
+		"mimetype": "image/jpeg",
+		"destination": "D:\\임덕규_수업\\15.sql\\storages\\210915",
+		"filename": "210915_8acdc790-52cb-40ae-8b8c-d30a48d433e2.jpg",
+		"path": "D:\\임덕규_수업\\15.sql\\storages\\210915\\210915_8acdc790-52cb-40ae-8b8c-d30a48d433e2.jpg",
+		"size": 104864
+	}],
+	"upfile": [{
+		"fieldname": "upfile",
+		"originalname": "Runner - 10809.mp4",
+		"encoding": "7bit",
+		"mimetype": "video/mp4",
+		"destination": "D:\\임덕규_수업\\15.sql\\storages\\210915",
+		"filename": "210915_2317eb01-1b70-4a9a-8867-8b2ccb3f1374.mp4",
+		"path": "D:\\임덕규_수업\\15.sql\\storages\\210915\\210915_2317eb01-1b70-4a9a-8867-8b2ccb3f1374.mp4",
+		"size": 768844
+	}]
+}

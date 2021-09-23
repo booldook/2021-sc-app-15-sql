@@ -37,12 +37,20 @@ module.exports = _lang => {
 					STATUS				: '판매',
 					UPFILE				: '첨부파일',
 				},
+				AUTH : {
+					USERID				: '아이디',
+					PASSWD				: '패스워드',
+					PASSWD2				: '패스워드 확인',
+					USERNAME			: '이름',
+					EMAIL					: '이메일',
+				},
 				BT: {
 					UPDATE				: '수정',
 					DELETE				: '삭제',
 					CREATE				: '등록',
 					LIST					: '리스트',
 					RESET					: '다시 등록',
+					JOIN					: '회원 가입',
 				},
 				MSG: {
 					DELETE				: '정말로 삭제하시겠습니까?'
@@ -84,12 +92,20 @@ module.exports = _lang => {
 					STATUS				: 'Status',
 					UPFILE				: 'Attachment file',
 				},
+				AUTH : {
+					USERID				: 'User id',
+					PASSWD				: 'Password',
+					PASSWD2				: 'Password confirm',
+					USERNAME			: 'User name',
+					EMAIL					: 'Email',
+				},
 				BT: {
 					UPDATE				: 'UPDATE',
 					DELETE				: 'DELETE',
 					CREATE				: 'CREATE',
 					LIST					: 'LIST',
 					RESET					: 'RESET',
+					JOIN					: 'JOIN'
 				},
 				MSG: {
 					DELETE				: 'Are you sure you want to delete it?'

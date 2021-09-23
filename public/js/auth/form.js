@@ -85,6 +85,9 @@ function verifyPasswd2() {
 function verifyPasswdEqual() {
 	var passwd = passwdEl.value.trim();
 	var passwd2 = passwd2El.value.trim();
+	if(!(verifyPasswd() && verifyPasswd2())) {
+		return false;
+	}
 	if(passwd !== passwd2) {
 		passwdEl.classList.add('error');
 		passwd2El.classList.add('error');
@@ -117,10 +120,15 @@ function verifyUsername() {
 }
 
 function verifyEmail() {
+	var regExp = /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/;
 	var email = emailEl.value.trim();
 	verifyReset(emailEl, emailTxt)
 	if(email === '') {
 		verifyFalse(emailEl, emailTxt, ERR.EMAIL_NULL)
+		return false;
+	}
+	else if(!regExp.test(email)) {
+		verifyFalse(emailEl, emailTxt, ERR.EMAIL_TAKEN)
 		return false;
 	}
 	else {

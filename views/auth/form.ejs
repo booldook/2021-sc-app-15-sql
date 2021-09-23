@@ -2,8 +2,9 @@
 <%- include('../inc/header') %>
 <script src="/js/promise.polyfill.min.js"></script> 
 <script src="/js/axios.min.js"></script> 
+<%- include('../inc/banner-auth') %> 
 <div class="form-wrapper wrapper">
-	<%- include('../inc/title-book') %> 
+	<%- include('../inc/title-bar') %> 
 	<form action="/<%= LANG %>/auth" method="POST" name="saveForm">
 		<table>
 			<tbody>
@@ -30,14 +31,14 @@
 				</tr>
 				<!-- 사용자 이름 -->
 				<tr>
-					<td class="title"><%= AUTH.USERNAME %></td>
+					<td class="title require"><%= AUTH.USERNAME %></td>
 					<td class="content">
 						<input type="text" name="username" class="form-control" placeholder="<%= AUTH.USERNAME %>">
 					</td>
 				</tr>
 				<!-- 이메일 -->
 				<tr>
-					<td class="title"><%= AUTH.EMAIL %></td>
+					<td class="title require"><%= AUTH.EMAIL %></td>
 					<td class="content">
 						<input type="text" name="email" class="form-control" placeholder="<%= AUTH.EMAIL %>">
 					</td>

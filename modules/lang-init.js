@@ -27,6 +27,10 @@ module.exports = _lang => {
 					TITLE 				: '도서 수정',
 					DESC 					: '수정할 도서 내용을 아래에서 변경하세요.',
 				},
+				JOIN: {
+					TITLE 				: '회원 가입',
+					DESC 					: '회원님의 가입 정보를 아래에 입력해 주세요.',
+				},
 				FIELD : {
 					NO						: '번호',
 					TITLE					: '제목',
@@ -81,6 +85,10 @@ module.exports = _lang => {
 				UPDATE: {
 					TITLE 				: 'Book Update',
 					DESC 					: 'Change the contents of the book to be edited below.',
+				},
+				JOIN: {
+					TITLE 				: 'Member Register',
+					DESC 					: 'Please enter the Profile you wish to register below.',
 				},
 				FIELD : {
 					NO						: 'No',

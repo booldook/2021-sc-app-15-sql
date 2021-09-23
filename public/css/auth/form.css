@@ -1,0 +1,5 @@
+.form-wrapper {}
+.form-wrapper table {width: 100%; border: 1px solid #ddd;}
+.form-wrapper table td {padding: .75em; border-bottom: 1px solid #dfdfdf;}
+.form-wrapper table td.title {width: 180px;}
+.form-wrapper table td.require::after {display: inline-block; content: '*'; color: #f10; margin-left: .5em; font-size: 1.25em;}

@@ -1,4 +1,5 @@
-.form-control:focus {color: unset; background-color: unset; border-color: #00559b; outline: unset; box-shadow: unset;}
+.form-control:focus {color: unset; background-color: unset; border-color: #005499; outline: unset; box-shadow: unset;}
+.form-control.active, .form-control.active:focus {border-color: #005499;}
 .form-control.error, .form-control.error:focus {border-color: #a70404;}
 
 .form-wrapper {}

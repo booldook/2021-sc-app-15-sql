@@ -32,10 +32,12 @@ app.use('/uploads', express.static(path.join(__dirname, 'storages')))
 const langMW = require('./middlewares/lang-mw')
 const bookRouter = require('./routes/book')
 const apiRouter = require('./routes/api/book')
+const authRouter = require('./routes/auth')
 
 app.use(langMW)
 app.use('/book', bookRouter)
 app.use('/api/book', apiRouter)
+app.use('/auth', authRouter)
 
 
 

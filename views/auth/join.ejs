@@ -1,0 +1,55 @@
+<%- include('../inc/head', { css }) %> 
+<%- include('../inc/header') %>
+<script src="/js/promise.polyfill.min.js"></script> 
+<script src="/js/axios.min.js"></script> 
+<div class="form-wrapper wrapper">
+	<%- include('../inc/title-book') %> 
+	<form action="/<%= LANG %>/auth" method="POST" name="saveForm">
+		<table>
+			<tbody>
+				<!-- 아이디 -->
+				<tr>
+					<td class="title require"><%= AUTH.USERID %></td>
+					<td class="content">
+						<input type="text" name="userid" class="form-control" placeholder="<%= AUTH.USERID %>" autofocus>
+					</td>
+				</tr>
+				<!-- 패스워드 -->
+				<tr>
+					<td class="title require"><%= AUTH.PASSWD %></td>
+					<td class="content">
+						<input type="password" name="passwd" class="form-control" placeholder="<%= AUTH.PASSWD %>" autofocus>
+					</td>
+				</tr>
+				<!-- 패스워드 확인 -->
+				<tr>
+					<td class="title require"><%= AUTH.PASSWD2 %></td>
+					<td class="content">
+						<input type="password" name="passwd2" class="form-control" placeholder="<%= AUTH.PASSWD2 %>" autofocus>
+					</td>
+				</tr>
+				<!-- 사용자 이름 -->
+				<tr>
+					<td class="title"><%= AUTH.USERNAME %></td>
+					<td class="content">
+						<input type="text" name="username" class="form-control" placeholder="<%= AUTH.USERNAME %>">
+					</td>
+				</tr>
+				<!-- 이메일 -->
+				<tr>
+					<td class="title"><%= AUTH.EMAIL %></td>
+					<td class="content">
+						<input type="text" name="email" class="form-control" placeholder="<%= AUTH.EMAIL %>">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="btn-wrap p-3 text-center">
+			<button class="btn btn-success" id="btSave">
+				<%= BT.JOIN %>
+			</button>
+			<button class="btn btn-danger" type="reset"><%= BT.RESET %></button>
+		</div>
+	</form>
+</div>
+<%- include('../inc/foot', { js }) %> 

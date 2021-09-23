@@ -5,7 +5,7 @@
 <%- include('../inc/banner-auth') %> 
 <div class="form-wrapper wrapper">
 	<%- include('../inc/title-bar') %> 
-	<form action="/<%= LANG %>/auth" method="POST" name="saveForm">
+	<form action="/<%= LANG %>/auth/form" method="POST" name="saveForm">
 		<table>
 			<tbody>
 				<!-- 아이디 -->
@@ -13,6 +13,7 @@
 					<td class="title require"><%= AUTH.USERID %></td>
 					<td class="content">
 						<input type="text" name="userid" class="form-control" placeholder="<%= AUTH.USERID %>" autofocus>
+						<div class="valid userid"></div>
 					</td>
 				</tr>
 				<!-- 패스워드 -->
@@ -20,6 +21,7 @@
 					<td class="title require"><%= AUTH.PASSWD %></td>
 					<td class="content">
 						<input type="password" name="passwd" class="form-control" placeholder="<%= AUTH.PASSWD %>" autofocus>
+						<div class="valid passwd"></div>
 					</td>
 				</tr>
 				<!-- 패스워드 확인 -->
@@ -27,6 +29,7 @@
 					<td class="title require"><%= AUTH.PASSWD2 %></td>
 					<td class="content">
 						<input type="password" name="passwd2" class="form-control" placeholder="<%= AUTH.PASSWD2 %>" autofocus>
+						<div class="valid passwd2"></div>
 					</td>
 				</tr>
 				<!-- 사용자 이름 -->
@@ -34,6 +37,7 @@
 					<td class="title require"><%= AUTH.USERNAME %></td>
 					<td class="content">
 						<input type="text" name="username" class="form-control" placeholder="<%= AUTH.USERNAME %>">
+						<div class="valid username"></div>
 					</td>
 				</tr>
 				<!-- 이메일 -->
@@ -41,6 +45,7 @@
 					<td class="title require"><%= AUTH.EMAIL %></td>
 					<td class="content">
 						<input type="text" name="email" class="form-control" placeholder="<%= AUTH.EMAIL %>">
+						<div class="valid email"></div>
 					</td>
 				</tr>
 			</tbody>
@@ -53,4 +58,21 @@
 		</div>
 	</form>
 </div>
+<script>
+	var ERR = {
+		ID_NULL			: "<%= ERROR.JOIN.ID_NULL %>",
+		ID_LEN			: "<%= ERROR.JOIN.ID_LEN %>",
+		ID_TAKEN		: "<%= ERROR.JOIN.ID_TAKEN %>",
+		ID_OK				: "<%= ERROR.JOIN.ID_OK %>",
+		PW_NULL			: "<%= ERROR.JOIN.PW_NULL %>",
+		PW_LEN			: "<%= ERROR.JOIN.PW_LEN %>",
+		PW2_NULL		: "<%= ERROR.JOIN.PW2_NULL %>",
+		PW2_LEN			: "<%= ERROR.JOIN.PW2_LEN %>",
+		PW_TAKEN		: "<%= ERROR.JOIN.PW_TAKEN %>",
+		NAME_NULL		: "<%= ERROR.JOIN.NAME_NULL %>",
+		EMAIL_NULL	: "<%= ERROR.JOIN.EMAIL_NULL %>",
+		EMAIL_TAKEN	: "<%= ERROR.JOIN.EMAIL_TAKEN %>",
+	};
+</script>
 <%- include('../inc/foot', { js }) %> 
+

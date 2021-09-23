@@ -5,6 +5,20 @@ module.exports = _lang => {
 			return {
 				ERROR: {
 					NOT_FOUND 		: '존재하지 않는 데이터 입니다.',
+					JOIN: {
+						ID_NULL			: '아이디를 입력하세요.',
+						ID_LEN			: '아이디는 6자 이상 24자 이하 입니다.',
+						ID_TAKEN		: '사용 할 수 없는 아이디 입니다.',
+						ID_OK				: '사용 가능한 아이디 입니다.',
+						PW_NULL			: '패스워드를 입력하세요.',
+						PW_LEN			: '패스워드는 6자 이상 24자 이하 입니다.',
+						PW2_NULL		: '패스워드를 재 입력하세요.',
+						PW2_LEN			: '패스워드 재 입력은 6자 이상 24자 이하 입니다.',
+						PW_TAKEN		: '패스워드가 일치하지 않습니다.',
+						NAME_NULL		: '이름을 입력하세요.',
+						EMAIL_NULL	: '이메일을 입력하세요.',
+						EMAIL_TAKEN	: '이메일 형식이 올바르지 않습니다.',
+					}
 				},
 				GLOBAL: {
 					LOGO					: '도서관리시스템',
@@ -64,6 +78,20 @@ module.exports = _lang => {
 			return {
 				ERROR: {
 					NOT_FOUND 		: 'Data Not Found',
+					JOIN: {
+						ID_NULL			: 'Please enter your ID',
+						ID_LEN			: 'ID must be between 6 and 24 characters',
+						ID_TAKEN		: 'You can not use this ID',
+						ID_OK				: 'Username is available',
+						PW_NULL			: 'Please enter your password',
+						PW_LEN			: 'Password must be between 6 and 24 characters',
+						PW2_NULL		: 'Please re-enter your password',
+						PW2_LEN			: 'Re-entering the password must be between 6 and 24 characters',
+						PW_TAKEN		: 'Passwords do not match',
+						NAME_NULL		: 'Please enter your name',
+						EMAIL_NULL	: 'Please enter your email',
+						EMAIL_TAKEN	: 'Email format is incorrect',
+					}
 				},
 				GLOBAL: {
 					LOGO					: 'BOOK MANAGEMENT SYSTEM',

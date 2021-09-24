@@ -1,0 +1,29 @@
+<script>
+const findUser = (opt) => {
+	let sql = ``
+	let where = ` WHERE 1 `
+	if(typeof opt.key === 'object') {
+		where += ` AND ( `
+		opt.key.fields.forEach((v, i) => {
+			where += ` ${v} = '${opt.value[i]}' `
+			if(i < opt.key.fields.length - 1) where += ` ${opt.key.op} `
+		})
+		where += ` ) `
+	} 
+	else if(typeof opt.key === 'string') {
+		where += ` AND ${opt.key} = '${opt.value}' `
+	}
+
+
+	sql += ` SELECT * FROM users ${where} `
+	console.log(sql)
+};
+
+findUser({ 
+	key: {
+		fields: ['username', 'email'], 
+		op: 'or'
+	}, 
+	value: ['임덕규', 'booldook@naver.com'] 
+});
+</script>

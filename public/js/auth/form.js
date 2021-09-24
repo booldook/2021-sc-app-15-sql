@@ -52,6 +52,23 @@ function verifyUserid() {
 		return false;
 	}
 	else {
+		axios
+		.get('/api/auth/verify', { params: { key: 'userid', value: userid } })
+		.then(function(r) {
+			console.log(r)
+			if(r.data.isUsed) {
+				verifyFalse(useridEl, useridTxt, ERR.ID_TAKEN)
+				return false;
+			}
+			else {
+				verifyTrue(useridEl, useridTxt, ERR.ID_OK)
+				return true;
+			}
+		})
+		.catch(function(err) {
+			verifyFalse(useridEl, useridTxt, err.response.data.msg)
+			return false;
+		})
 		verifyTrue(useridEl, useridTxt, ERR.ID_OK);
 		return true;
 	}

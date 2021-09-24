@@ -3,7 +3,7 @@ const express = require('express')
 const router = express.Router()
 const createError = require('http-errors')
 const { alert } = require('../../modules/util')
-const { createUser } = require('../../models')
+const { createUser } = require('../../models/auth')
 
 router.get('/', (req, res, next) => {
 	// join 창 보여주기
@@ -19,7 +19,7 @@ router.post('/', async (req, res, next) => {
 	try {
 		const r = await createUser(req.body)
 		if(r.success) res.redirect('/')
-		else if(r.msg) res.send(alert(msg))
+		else if(r.msg) res.send(alert(r.msg))
 		else next(createError(r.err))
 	}
 	catch(err) {

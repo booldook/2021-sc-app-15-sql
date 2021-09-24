@@ -3,6 +3,7 @@ const { pool } = require('../../modules/mysql-init')
 const isUser = async userid => {
 	const sql = " SELECT * FROM users WHERE userid=? "
 	const [rs] = await pool.execute(sql, [userid])
+	console.log(rs)
 	return rs.length ? true : false
 }
 

@@ -2,6 +2,7 @@
 <%- include('../inc/header') %>
 <script src="/js/promise.polyfill.min.js"></script> 
 <script src="/js/axios.min.js"></script> 
+<script src="/js/validator.min.js"></script> 
 <%- include('../inc/banner-auth') %> 
 <div class="form-wrapper wrapper">
 	<%- include('../inc/title-bar') %> 
@@ -63,6 +64,7 @@
 		ID_NULL			: "<%= ERROR.JOIN.ID_NULL %>",
 		ID_LEN			: "<%= ERROR.JOIN.ID_LEN %>",
 		ID_TAKEN		: "<%= ERROR.JOIN.ID_TAKEN %>",
+		ID_VALID		: "<%= ERROR.JOIN.ID_VALID %>",
 		ID_OK				: "<%= ERROR.JOIN.ID_OK %>",
 		PW_NULL			: "<%= ERROR.JOIN.PW_NULL %>",
 		PW_LEN			: "<%= ERROR.JOIN.PW_LEN %>",
@@ -71,6 +73,7 @@
 		PW_TAKEN		: "<%= ERROR.JOIN.PW_TAKEN %>",
 		NAME_NULL		: "<%= ERROR.JOIN.NAME_NULL %>",
 		EMAIL_NULL	: "<%= ERROR.JOIN.EMAIL_NULL %>",
+		EMAIL_VALID	: "<%= ERROR.JOIN.EMAIL_VALID %>",
 		EMAIL_TAKEN	: "<%= ERROR.JOIN.EMAIL_TAKEN %>",
 	};
 </script>

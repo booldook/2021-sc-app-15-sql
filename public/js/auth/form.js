@@ -48,29 +48,21 @@ function verifyUserid() {
 	var userid = useridEl.value.trim();
 	verifyReset(useridEl, useridTxt);
 	if(userid === '' || userid.length < 6 || userid.length > 24) {
-		verifyFalse(useridEl, useridTxt, userid === '' ? ERR.ID_NULL : ERR.ID_LEN);
-		return false;
+		return verifyFalse(useridEl, useridTxt, userid === '' ? ERR.ID_NULL : ERR.ID_LEN);
+	}
+	else if(!validator.isAlphanumeric(userid)) {
+		return verifyFalse(useridEl, useridTxt, ERR.ID_VALID);
 	}
 	else {
 		axios
 		.get('/api/auth/verify', { params: { key: 'userid', value: userid } })
 		.then(function(r) {
-			console.log(r)
-			if(r.data.isUsed) {
-				verifyFalse(useridEl, useridTxt, ERR.ID_TAKEN)
-				return false;
-			}
-			else {
-				verifyTrue(useridEl, useridTxt, ERR.ID_OK)
-				return true;
-			}
+			if(r.data.isUsed) return verifyFalse(useridEl, useridTxt, ERR.ID_TAKEN)
+			else return verifyTrue(useridEl, useridTxt, ERR.ID_OK)
 		})
 		.catch(function(err) {
-			verifyFalse(useridEl, useridTxt, err.response.data.msg)
-			return false;
+			return verifyFalse(useridEl, useridTxt, err.response.data.msg)
 		})
-		verifyTrue(useridEl, useridTxt, ERR.ID_OK);
-		return true;
 	}
 }
 
@@ -78,12 +70,10 @@ function verifyPasswd() {
 	var passwd = passwdEl.value.trim();
 	verifyReset(passwdEl, passwdTxt)
 	if(passwd === '' || passwd.length < 6 || passwd.length > 24) {
-		verifyFalse(passwdEl, passwdTxt, passwd === '' ? ERR.PW_NULL : ERR.PW_LEN)
-		return false;
+		return verifyFalse(passwdEl, passwdTxt, passwd === '' ? ERR.PW_NULL : ERR.PW_LEN)
 	}
 	else {
-		verifyTrue(passwdEl, passwdTxt)
-		return true;
+		return verifyTrue(passwdEl, passwdTxt)
 	}
 }
 
@@ -91,12 +81,10 @@ function verifyPasswd2() {
 	var passwd2 = passwd2El.value.trim();
 	verifyReset(passwd2El, passwd2Txt)
 	if(passwd2 === '' || passwd2.length < 6 || passwd2.length > 24) {
-		verifyFalse(passwd2El, passwd2Txt, passwd2 === '' ? ERR.PW2_NULL : ERR.PW2_LEN)
-		return false;
+		return verifyFalse(passwd2El, passwd2Txt, passwd2 === '' ? ERR.PW2_NULL : ERR.PW2_LEN)
 	}
 	else {
-		verifyTrue(passwd2El, passwd2Txt)
-		return true;
+		return verifyTrue(passwd2El, passwd2Txt)
 	}
 }
 
@@ -114,10 +102,6 @@ function verifyPasswdEqual() {
 	else {
 		verifyTrue(passwdEl, passwdTxt);
 		verifyTrue(passwd2El, passwd2Txt);
-		passwdEl.classList.remove('error');
-		passwd2El.classList.remove('error');
-		passwdTxt.innerHTML = '';
-		passwd2Txt.innerHTML = '';
 		return true;
 	}
 }
@@ -126,30 +110,34 @@ function verifyUsername() {
 	var username = usernameEl.value.trim();
 	verifyReset(usernameEl, usernameTxt)
 	if(username === '') {
-		verifyFalse(usernameEl, usernameTxt, ERR.NAME_NULL)
-		return false;
+		return verifyFalse(usernameEl, usernameTxt, ERR.NAME_NULL)
 	}
 	else {
-		verifyTrue(usernameEl, usernameTxt)
-		return true;
+		return verifyTrue(usernameEl, usernameTxt)
 	}
 }
 
 function verifyEmail() {
-	var regExp = /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/;
+	// var regExp = /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/;
 	var email = emailEl.value.trim();
 	verifyReset(emailEl, emailTxt)
 	if(email === '') {
-		verifyFalse(emailEl, emailTxt, ERR.EMAIL_NULL)
-		return false;
+		return verifyFalse(emailEl, emailTxt, ERR.EMAIL_NULL)
 	}
-	else if(!regExp.test(email)) {
-		verifyFalse(emailEl, emailTxt, ERR.EMAIL_TAKEN)
-		return false;
+	// else if(!regExp.test(email)) {
+	else if(!validator.isEmail(email)) {
+		return verifyFalse(emailEl, emailTxt, ERR.EMAIL_VALID)
 	}
 	else {
-		verifyTrue(emailEl, emailTxt)
-		return true;
+		axios
+		.get('/api/auth/verify', { params: { key: 'email', value: email } })
+		.then(function(r) {
+			if(r.data.isUsed) return verifyFalse(emailEl, emailTxt, ERR.EMAIL_TAKEN)
+			else return verifyTrue(emailEl, emailTxt)
+		})
+		.catch(function(err) {
+			return verifyFalse(emailEl, emailTxt, err.response.data.msg)
+		})
 	}
 }
 
@@ -165,6 +153,7 @@ function verifyFalse(el, elTxt, msg) {
 	el.classList.add('error');
 	elTxt.classList.add('error');
 	elTxt.innerHTML = msg;
+	return false;
 }
 
 function verifyTrue(el, elTxt, msg) {
@@ -172,4 +161,5 @@ function verifyTrue(el, elTxt, msg) {
 	el.classList.remove('error');
 	elTxt.classList.remove('error');
 	elTxt.innerHTML = msg || '';
+	return true;
 }

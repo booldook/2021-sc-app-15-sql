@@ -1,5 +1,6 @@
 /* 
 userid : 6 ~ 24
+userid 존재 여부 - ajax
 passwd : 6 ~ 24
 passwd === passwd2
 email 검증
@@ -89,15 +90,13 @@ function verifyPasswdEqual() {
 		return false;
 	}
 	if(passwd !== passwd2) {
-		passwdEl.classList.add('error');
-		passwd2El.classList.add('error');
-		passwdTxt.classList.add('error');
-		passwd2Txt.classList.add('error');
-		passwdTxt.innerHTML = ERR.PW_TAKEN;
-		passwd2Txt.innerHTML = ERR.PW_TAKEN;
+		verifyFalse(passwdEl, passwdTxt, ERR.PW_TAKEN);
+		verifyFalse(passwd2El, passwd2Txt, ERR.PW_TAKEN);
 		return false;
 	}
 	else {
+		verifyTrue(passwdEl, passwdTxt);
+		verifyTrue(passwd2El, passwd2Txt);
 		passwdEl.classList.remove('error');
 		passwd2El.classList.remove('error');
 		passwdTxt.innerHTML = '';
@@ -145,12 +144,15 @@ function verifyReset(el, elTxt) {
 }
 
 function verifyFalse(el, elTxt, msg) {
+	el.classList.remove('active');
+	el.classList.add('error');
 	elTxt.classList.add('error');
 	elTxt.innerHTML = msg;
-	el.classList.add('error');
 }
 
 function verifyTrue(el, elTxt, msg) {
 	el.classList.add('active');
+	el.classList.remove('error');
+	elTxt.classList.remove('error');
 	elTxt.innerHTML = msg || '';
 }

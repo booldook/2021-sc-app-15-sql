@@ -18,9 +18,6 @@ var passwd2Txt = document.querySelector('.passwd2');
 var usernameTxt = document.querySelector('.username');
 var emailTxt = document.querySelector('.email');
 
-var validId = false;
-var validEmail = false;
-
 f.addEventListener('submit', onSubmit)
 useridEl.addEventListener('blur', verifyUserid)
 passwdEl.addEventListener('keyup', verifyPasswd)

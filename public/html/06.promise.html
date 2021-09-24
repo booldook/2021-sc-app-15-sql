@@ -1,0 +1,15 @@
+<script>
+	function fn(a, b, cb) {
+		return cb(a + b)
+	}
+
+	function fn2() {
+		return fn(10, 20, function(r) {
+				console.log(r)
+				return "리턴"
+		})
+		
+	}
+
+	console.log( fn2() );
+</script>

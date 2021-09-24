@@ -41,7 +41,10 @@ function onSubmit(e) {
 	var isUsername = verifyUsername();
 	var isEmail = verifyEmail();
 	
-	if(isUserid && isPasswd  && isPasswd2 && isPasswdEqual && isUsername && isEmail) f.submit();
+	if(isUserid && isPasswd  && isPasswd2 && isPasswdEqual && isUsername && isEmail) {
+		console.log('전송')
+		f.submit();
+	}
 }
 
 function verifyUserid() {
@@ -54,15 +57,25 @@ function verifyUserid() {
 		return verifyFalse(useridEl, useridTxt, ERR.ID_VALID);
 	}
 	else {
-		axios
-		.get('/api/auth/verify', { params: { key: 'userid', value: userid } })
+		$.get('/api/auth/verify', { key: 'userid', value: userid }, function(r, status, xhr) {
+			console.log(r);
+			console.log(status);
+			console.log(xhr);
+			if(xhr.status > 200) return verifyFalse(useridEl, useridTxt, xhr.responseJSON.msg)
+			else if(r.isUsed) return verifyFalse(useridEl, useridTxt, ERR.ID_TAKEN)
+			else return verifyTrue(useridEl, useridTxt, ERR.ID_OK)
+		})
+		/* axios
+		.get('/api/auth/verify', { params: { key: 'userid', value: userid } }, function(err, r) {
+
+		})
 		.then(function(r) {
 			if(r.data.isUsed) return verifyFalse(useridEl, useridTxt, ERR.ID_TAKEN)
 			else return verifyTrue(useridEl, useridTxt, ERR.ID_OK)
 		})
 		.catch(function(err) {
 			return verifyFalse(useridEl, useridTxt, err.response.data.msg)
-		})
+		}) */
 	}
 }
 

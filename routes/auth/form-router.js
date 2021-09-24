@@ -15,6 +15,7 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
 	// 실제 join 처리
+	res.json(req.body)
 })
 
 module.exports = router

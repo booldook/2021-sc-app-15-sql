@@ -16,7 +16,6 @@ router.get('/verify', async (req, res, next) => {
 		else {
 			sql = ` SELECT * FROM users WHERE ${key} = ? `
 			const [rs] = await pool.execute(sql, [value])
-			console.log(rs)
 			res.status(200).json({ isUsed: rs.length ? true : false })
 		}
 	}

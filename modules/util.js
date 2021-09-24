@@ -47,5 +47,11 @@ const getIcon = file => {
 
 const isImg = file => imgExt.includes(path.extname(file).substr(1)) ? true : false
 
+const alert = (msg, loc = '/') => {
+	return `<script>
+		alert('${msg}');
+		location.href = '${loc}';
+	</script>`
+}
 
-module.exports = { location, cutTail, chgStatus, exts, relPath, absPath, getIcon, isImg, moveFile }
+module.exports = { location, cutTail, chgStatus, exts, relPath, absPath, getIcon, isImg, moveFile, alert }

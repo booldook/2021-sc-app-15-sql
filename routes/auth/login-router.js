@@ -1,9 +1,9 @@
 const path = require('path')
 const express = require('express')
 const router = express.Router()
-const { error } = require('../../modules/util')
+const createError = require('http-errors')
 const { pool } = require('../../modules/mysql-init')
-const { findUser } = require('../../models/auth')
+const { loginUser } = require('../../models/auth')
 
 router.get('/', (req, res, next) => {
 	// login 창 보여주기
@@ -13,8 +13,14 @@ router.get('/', (req, res, next) => {
 	res.render('auth/login')
 })
 
-router.post('/', (req, res, next) => {
+router.post('/', async (req, res, next) => {
 	// 실제 login 로직
+	try {
+		const r = await loginUser(req.body)
+	}
+	catch(err) {
+		next(createError(err))
+	}
 })
 
 module.exports = router

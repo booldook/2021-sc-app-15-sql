@@ -3,7 +3,12 @@
 		<h2 class="title-wrap"><%= eval(PAGE+'.TITLE') %></h2>
 		<p class="desc-wrap"><%= eval(PAGE+'.DESC') %></p>
 		<div class="btn-wrap">
-			<a href="/<%= LANG %>/book/form" class="btn btn-primary"><%= BT.CREATE %></a>
+			<% if (user) { %>
+				<a href="/<%= LANG %>/book/form" class="btn btn-primary"><%= BT.CREATE %></a>
+			<% } else { %>
+				<a href="/<%= LANG %>/auth/form" class="btn btn-success"><%= BT.JOIN %></a>
+			<% } %>
+			 
 		</div>
 	</div>
 </section>

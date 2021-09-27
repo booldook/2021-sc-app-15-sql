@@ -1,9 +1,9 @@
 <header class="header-wrapper">
 	<h1 class="logo"><a href="/<%= LANG %>/book"><%= GLOBAL.LOGO %></a></h1>
 	<nav class="navi-wrap">
-		<a href="/<%= LANG %>/book/form" class="navi"><%= GLOBAL.NAVI[0] %></a>
 		<a href="/<%= LANG %>/book" class="navi"><%= GLOBAL.NAVI[1] %></a>
 		<% if(user) { %>
+			<a href="/<%= LANG %>/book/form" class="navi"><%= GLOBAL.NAVI[0] %></a>
 			<a href="/<%= LANG %>/auth/logout" class="navi"><%= GLOBAL.NAVI[3] %></a>
 		<% } else { %>
 			<a href="/<%= LANG %>/auth/login" class="navi"><%= GLOBAL.NAVI[2] %></a>

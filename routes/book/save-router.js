@@ -21,17 +21,18 @@ const createError = require('http-errors')
 const { moveFile } = require('../../modules/util')
 const { pool } = require('../../modules/mysql-init')
 const uploader = require('../../middlewares/multer-book-mw')
+const { isUser, isGuest } = require('../../middlewares/auth-mw')
 
 
-router.post('/', uploader.fields([{name: 'cover'}, {name: 'upfile'}]), async (req, res, next) => {
+router.post('/', isUser, uploader.fields([{name: 'cover'}, {name: 'upfile'}]), async (req, res, next) => {
 	let sql, values
 	try {
 		const { title, writer, content, _method, idx } = req.body
 		const isUpdate = (_method === 'PUT' && idx)
 		sql = isUpdate ? " UPDATE books " : " INSERT INTO books "
-		sql += " SET fidx=1, title=?, writer=?, content=? "
+		sql += " SET fidx=?, title=?, writer=?, content=? "
 		sql += isUpdate ? " WHERE idx = " + idx : ""
-		values = [title, writer, content]
+		values = [req.session.user.idx, title, writer, content]
 		const [rs] = await pool.execute(sql, values)
 		
 		if(req.files) {

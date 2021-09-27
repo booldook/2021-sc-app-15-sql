@@ -21,10 +21,10 @@ const createError = require('http-errors')
 const { moveFile } = require('../../modules/util')
 const { pool } = require('../../modules/mysql-init')
 const uploader = require('../../middlewares/multer-book-mw')
-const { isUser, isGuest } = require('../../middlewares/auth-mw')
+const { isUser, isGuest, isMyBook } = require('../../middlewares/auth-mw')
 
 
-router.post('/', isUser, uploader.fields([{name: 'cover'}, {name: 'upfile'}]), async (req, res, next) => {
+router.post('/', isUser, isMyBook('body', 'U'), uploader.fields([{name: 'cover'}, {name: 'upfile'}]), async (req, res, next) => {
 	let sql, values
 	try {
 		const { title, writer, content, _method, idx } = req.body

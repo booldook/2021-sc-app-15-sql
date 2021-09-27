@@ -48,14 +48,20 @@
 			<% } %>
 		</tbody>
 	</table>
-	<div class="btn-wrap py-3 d-flex">
-		<a href="/<%= LANG %>/book" class="btn btn-primary"><%= BT.LIST %></a>
-		<button class="btn btn-success ml-auto mr-1" id="btUpdate" data-idx="<%= book.idx %>" data-lang="<%= LANG %>"><%= BT.UPDATE %></button>
-		<button class="btn btn-danger" id="btDelete" data-msg="<%= MSG.DELETE %>"><%= BT.DELETE %></button>
-	</div>
-	<form action="/<%= LANG %>/book" method="POST" name="deleteForm">
-		<input type="hidden" name="_method" value="DELETE">
-		<input type="hidden" name="idx" value="<%= book.idx %>">
-	</form>
+	<% if (user.idx === book.fidx) { %>
+		<div class="btn-wrap py-3 d-flex">
+			<a href="/<%= LANG %>/book" class="btn btn-primary"><%= BT.LIST %></a>
+				<button class="btn btn-success ml-auto mr-1" id="btUpdate" data-idx="<%= book.idx %>" data-lang="<%= LANG %>"><%= BT.UPDATE %></button>
+				<button class="btn btn-danger" id="btDelete" data-msg="<%= MSG.DELETE %>"><%= BT.DELETE %></button>
+		</div>
+		<form action="/<%= LANG %>/book" method="POST" name="deleteForm">
+			<input type="hidden" name="_method" value="DELETE">
+			<input type="hidden" name="idx" value="<%= book.idx %>">
+		</form>
+	<% } else { %>
+		<div class="btn-wrap py-3 d-flex justify-content-center">
+			<a href="/<%= LANG %>/book" class="btn btn-primary"><%= BT.LIST %></a>
+		</div>
+	<% } %>
 </div>
 <%- include('../inc/foot', { js }) %> 

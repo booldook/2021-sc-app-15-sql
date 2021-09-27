@@ -24,7 +24,7 @@ const uploader = require('../../middlewares/multer-book-mw')
 const { isUser, isGuest, isMyBook } = require('../../middlewares/auth-mw')
 
 
-router.post('/', isUser, isMyBook('body', 'U'), uploader.fields([{name: 'cover'}, {name: 'upfile'}]), async (req, res, next) => {
+router.post('/', isUser, uploader.fields([{name: 'cover'}, {name: 'upfile'}]), isMyBook('body', 'U'), async (req, res, next) => {
 	let sql, values
 	try {
 		const { title, writer, content, _method, idx } = req.body

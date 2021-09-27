@@ -2,7 +2,7 @@
 .form-control.active, .form-control.active:focus {border-color: #005499;}
 .form-control.error, .form-control.error:focus {border-color: #a70404;}
 
-.login-wrapper {margin-top: 3em; max-width: 400px;}
+.login-wrapper {margin-top: 3em; max-width: 500px;}
 .login-wrapper table {width: 100%; border: 1px solid #ddd;}
 .login-wrapper table td {padding: .75em; border-bottom: 1px solid #dfdfdf;}
 .login-wrapper table td.title {width: 120px;}

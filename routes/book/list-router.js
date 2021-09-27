@@ -39,7 +39,7 @@ router.get(['/', '/:page'], async (req, res, next) => {
 			v.icon = v.icon ? getIcon(v.icon) : null
 		})
 		// console.timeEnd('start')
-		res.status(200).render('book/list', { books })
+		res.status(200).render('book/list', { books, pager })
 	}
 	catch(err) {
 		next(createError(err))

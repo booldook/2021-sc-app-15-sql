@@ -17,6 +17,7 @@ router.post('/', async (req, res, next) => {
 	// 실제 login 로직
 	try {
 		const r = await loginUser(req.body)
+		res.json(r)
 	}
 	catch(err) {
 		next(createError(err))

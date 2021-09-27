@@ -49,7 +49,6 @@ const loginUser = async ({ userid, passwd }) => {
 		const [r] = await pool.execute(sql, [userid])
 		if(r.length === 1) {
 			compare = await bcrypt.compare(passwd + process.env.BCRYPT_SALT, r[0].passwd)
-			console.log(compare)
 			return compare ? { success: true, user: r[0] } : { success: false, user: null, msg: '비밀번호가 일치하지 않습니다.' }
 		}
 		else return { success: false, user: null, msg: '아이디가 일치하지 않습니다.' }

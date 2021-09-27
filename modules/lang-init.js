@@ -47,6 +47,10 @@ module.exports = _lang => {
 					TITLE 				: '회원 가입',
 					DESC 					: '회원님의 가입 정보를 아래에 입력해 주세요.',
 				},
+				LOGIN: {
+					TITLE 				: '회원 로그인',
+					DESC 					: '회원님의 로그인 정보를 아래에 입력해 주세요.',
+				},
 				FIELD : {
 					NO						: '번호',
 					TITLE					: '제목',
@@ -71,6 +75,7 @@ module.exports = _lang => {
 					LIST					: '리스트',
 					RESET					: '다시 등록',
 					JOIN					: '회원 가입',
+					LOGIN					: '회원 로그인',
 				},
 				MSG: {
 					DELETE				: '정말로 삭제하시겠습니까?'
@@ -122,6 +127,10 @@ module.exports = _lang => {
 					TITLE 				: 'Member Register',
 					DESC 					: 'Please enter the Profile you wish to register below.',
 				},
+				LOGIN: {
+					TITLE 				: 'Member Login',
+					DESC 					: 'Please enter your login information below.',
+				},
 				FIELD : {
 					NO						: 'No',
 					TITLE					: 'Title',
@@ -145,7 +154,8 @@ module.exports = _lang => {
 					CREATE				: 'CREATE',
 					LIST					: 'LIST',
 					RESET					: 'RESET',
-					JOIN					: 'JOIN'
+					JOIN					: 'JOIN',
+					LOGIN					: 'LOGIN',
 				},
 				MSG: {
 					DELETE				: 'Are you sure you want to delete it?'

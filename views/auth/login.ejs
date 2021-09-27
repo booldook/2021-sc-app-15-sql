@@ -1,0 +1,42 @@
+<%- include('../inc/head', { css }) %> 
+<%- include('../inc/header') %>
+<%- include('../inc/banner-auth') %> 
+<div class="login-wrapper wrapper">
+	<%- include('../inc/title-bar') %> 
+	<form action="/<%= LANG %>/auth/login" method="POST" name="loginForm">
+		<table>
+			<tbody>
+				<!-- 아이디 -->
+				<tr>
+					<td class="title require"><%= AUTH.USERID %></td>
+					<td class="content">
+						<input type="text" name="userid" class="form-control" placeholder="<%= AUTH.USERID %>" autofocus>
+						<div class="valid userid"></div>
+					</td>
+				</tr>
+				<!-- 패스워드 -->
+				<tr>
+					<td class="title require"><%= AUTH.PASSWD %></td>
+					<td class="content">
+						<input type="password" name="passwd" class="form-control" placeholder="<%= AUTH.PASSWD %>" autofocus>
+						<div class="valid passwd"></div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="btn-wrap p-3 text-center">
+			<button class="btn btn-primary" id="btSave"><%= BT.LOGIN %></button>
+			<a href="/auth/join" class="btn btn-success"><%= BT.JOIN %></a>
+		</div>
+	</form>
+</div>
+<script>
+	var ERR = {
+		ID_NULL			: "<%= ERROR.JOIN.ID_NULL %>",
+		ID_LEN			: "<%= ERROR.JOIN.ID_LEN %>",
+		PW_NULL			: "<%= ERROR.JOIN.PW_NULL %>",
+		PW_LEN			: "<%= ERROR.JOIN.PW_LEN %>",
+	};
+</script>
+<%- include('../inc/foot', { js }) %> 
+

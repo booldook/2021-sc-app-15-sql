@@ -8,8 +8,8 @@ const { findUser } = require('../../models/auth')
 router.get('/', (req, res, next) => {
 	// login 창 보여주기
 	req.app.locals.PAGE = 'LOGIN'
-	const js = 'auth/login'
-	const css = 'auth/login'
+	req.app.locals.js = 'auth/login'
+	req.app.locals.css = 'auth/login'
 	res.render('auth/login')
 })
 

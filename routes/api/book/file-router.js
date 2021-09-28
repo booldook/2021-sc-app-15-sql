@@ -2,21 +2,13 @@ const path = require('path')
 const express = require('express')
 const router = express.Router()
 const { moveFile } = require('../../../modules/util')
-const { pool } = require('../../../modules/mysql-init')
+const { updateFile, findFile } = require('../../../models/file')
 
 router.delete('/:idx', async (req, res, next) => {
 	try {
-		sql = "UPDATE files SET status='0' WHERE idx = " + req.params.idx
-		console.log(sql)
-		await pool.execute(sql)
-	
-		sql = "SELECT savename FROM files WHERE idx = " + req.params.idx
-		console.log(sql)
-		const [rs] = await pool.execute(sql)
-	
-		for(let { savename } of rs) {
-			await moveFile(savename)
-		}
+		await updateFile(req.params.idx, [['status', '0']])
+		const { file } = await findFile(req.params.idx)
+		await moveFile(file.savename)
 		res.status(200).json({ code: 200, result: 'success' })
 	}
 	catch(err) {

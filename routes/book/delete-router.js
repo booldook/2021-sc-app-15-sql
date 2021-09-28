@@ -9,7 +9,6 @@ const { updateFileStatus, findBookFiles } = require('../../models/file')
 const { isUser, isGuest, isMyBook } = require('../../middlewares/auth-mw')
 
 router.delete('/', isUser, isMyBook('body'), async (req, res, next) => {
-	let sql
 	try {
 		await updateBookStatus(req.body.idx)
 		await updateFileStatus(req.body.idx)

@@ -23,6 +23,11 @@ app.set('views', './views')
 app.locals.pretty = true
 
 
+/*************** static init **************/
+app.use('/', express.static(path.join(__dirname, 'public')))
+app.use('/uploads', express.static(path.join(__dirname, 'storages')))
+
+
 /*************** middleware ***************/
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
@@ -30,27 +35,10 @@ app.use(method())
 app.use(session(app))
 
 
-
-
-
-
-
-
-
-/*************** static init **************/
-app.use('/', express.static(path.join(__dirname, 'public')))
-app.use('/uploads', express.static(path.join(__dirname, 'storages')))
-
-
 /**************** passport ****************/
 passportModule(passport)
 app.use(passport.initialize())
 app.use(passport.session())
-app.use((req, res, next) => { 
-	console.log(req.user); 
-	console.log(req.session); 
-	next(); 
-})
 
 
 /***************** locals *****************/

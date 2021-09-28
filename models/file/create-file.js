@@ -1,7 +1,6 @@
 const { pool } = require('../../modules/mysql-init')
 
 const createFile = async data => {
-	console.log(data)
 	try {
 		let sql = " INSERT INTO files SET oriname=?, savename=?, mimetype=?, size=?, fieldname=?, fidx=? "
 		let { oriname, savename, mimetype, size, fieldname, fidx } = data

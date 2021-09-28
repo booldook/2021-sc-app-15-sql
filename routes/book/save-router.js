@@ -14,7 +14,7 @@ const { findBookFile, updateFile, createFile } = require('../../models/file')
 
 router.post('/', isUser, uploader.fields([{name: 'cover'}, {name: 'upfile'}]), isMyBook('body', 'U'), async (req, res, next) => {
 	try {
-		let book = { ...req.body, fidx: req.session.user.idx }
+		let book = { ...req.body, fidx: req.user.idx }
 		let isUpdate = book._method === 'PUT' && book.idx
 		const { idx: bookIdx } = isUpdate ? await updateBook(book) : await createBook(book)
 		

@@ -1,4 +1,4 @@
-const { pool } = require('../modules/mysql-init')
+const { findMyBook } = require('../models/book')
 const { alert } = require('../modules/util')
 
 
@@ -14,14 +14,13 @@ const isGuest = (req, res, next) => {
 
 const isMyBook = (name, mode) => {
 	return async (req, res, next) => {
-		let sql
 		const { idx, _method } = eval(`req.${name}`)
 		const fidx = req.user.idx
+		console.log(idx, fidx, _method)
 		if(mode === 'U' && _method !== 'PUT') next()
 		else {
-			sql = " SELECT * FROM books WHERE idx=? AND fidx=? "
-			const [r] = await pool.execute(sql, [idx, fidx])
-			if(r.length) next()
+			const { success } = await findMyBook(idx, fidx)
+			if(success) next()
 			else res.send(alert('정상적인 접근이 아닙니다. -.-'))
 		}
 	}

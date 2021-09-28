@@ -37,7 +37,7 @@ const findBookFiles = async (idx) => {
 const findFile = async (idx) => {
 	try {
 		let sql = " SELECT * FROM files WHERE idx = ? "
-		const [file] = await pool.execute(sql, [idx])
+		const [[file]] = await pool.execute(sql, [idx])
 		return { success: true, file }
 	}
 	catch(err) {

@@ -20,4 +20,17 @@ const updateFile = async (idx, fields) => {
 	}
 }
 
-module.exports = { updateFile } 
+const updateFileStatus = async (fidx, status = 0) => {
+	try {
+		let sql = " UPDATE files SET status=? WHERE fidx=? "
+		const [rs] = await pool.execute(sql, [String(status), String(fidx)])
+		return rs.affectedRows > 0 
+			? { success: true, fidx } 
+			: { success: false, fidx, msg: 'Error' }
+	}
+	catch(err) {
+		return { success: false, err }
+	}
+}
+
+module.exports = { updateFile, updateFileStatus } 

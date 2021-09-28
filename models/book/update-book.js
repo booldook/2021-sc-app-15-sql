@@ -14,4 +14,17 @@ const updateBook = async book => {
 	}
 }
 
-module.exports = { updateBook } 
+const updateBookStatus = async (idx, status = 0) => {
+	try {
+		let sql = " UPDATE books SET status=? WHERE idx=? "
+		const [rs] = await pool.execute(sql, [String(status), String(idx)])
+		return rs.affectedRows > 0 
+			? { success: true, idx } 
+			: { success: false, idx, msg: 'Error' }
+	}
+	catch(err) {
+		return { success: false, err }
+	}
+}
+
+module.exports = { updateBook, updateBookStatus } 

@@ -11,10 +11,17 @@ const findAllFiles = async (order = 'ASC') => {
 	}
 }
 
-const findBookFiles = async (fidx) => {
+const findBookFiles = async (opt) => {
 	try {
-		let sql = " SELECT * FROM files WHERE fidx = ? "
-		const [files] = await pool.execute(sql, [fidx])
+		if(typeof opt === 'object') {
+			let { fidx, fieldname, status } = opt
+			let sql = " SELECT idx, savename FROM files WHERE fidx=? AND fieldname=? AND status=? "
+			const [files] = await pool.execute(sql, [fidx, fieldname, status])
+		}
+		else {
+			let sql = " SELECT * FROM files WHERE fidx = ? "
+			const [files] = await pool.execute(sql, [opt])
+		}
 		return { success: true, files }
 	}
 	catch(err) {

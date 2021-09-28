@@ -42,7 +42,7 @@ const isVerify = async (key, value) => {
 	return rs.length ? true : false
 }
 
-const loginUser = async ({ userid, passwd }) => {
+const loginUser = async (userid, passwd) => {
 	let sql, compare
 	try {
 		sql = " SELECT * FROM users WHERE userid=? "

@@ -1,7 +1,9 @@
 const validator = require('validator')
 const bcrypt = require('bcrypt')
+const createError = require('http-errors')
 const { pool } = require('../../modules/mysql-init')
 const { isVerify } = require('./find-user')
+
 
 const isValid = (user) => {
 	let { userid, passwd, passwd2, username, email } = user
@@ -20,7 +22,7 @@ const isValid = (user) => {
 	else return true;
 }
 
-module.exports = async (user) => {
+const createUser = async (user) => {
 	let { userid, passwd, username, email, sql, hashPasswd } = user
 	let { BCRYPT_SALT: salt, BCRYPT_ROUND: round } = process.env
 	try {
@@ -38,3 +40,19 @@ module.exports = async (user) => {
 		return { success: false, err }
 	}
 }
+
+const createSnsUser = async ({ userid }, { accessToken, refreshToken, provider, snsid, snsName, displayName, profileURL, email }) => {
+	let sql
+	try {
+		sql = " INSERT INTO users SET userid=? "
+		const [{ insertId: idx }] = await pool.execute(sql, [userid])
+		sql = ` INSERT INTO snsusers SET fidx=?, accessToken=?, refreshToken=?, provider=?, snsid=?, snsname=?, displayName=?, profileURL=?, email=? `
+		await pool.execute(sql, [idx, accessToken, refreshToken, provider, snsid, snsName, displayName, profileURL, email])
+		return { success: true, idx }
+	}
+	catch(err) {
+		throw new Error(err)
+	}
+}
+
+module.exports = { createUser, createSnsUser }

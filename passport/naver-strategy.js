@@ -3,11 +3,11 @@ const { createSnsUser, existUser } = require('../models/auth')
 
 const cb = async (accessToken, refreshToken, profile, done) => {
 	try {
-		console.log('==================')
-		console.log(accessToken)
-		console.log(refreshToken)
-		console.log(profile)
-		console.log('==================')
+		// console.log('==================')
+		// console.log(accessToken)
+		// console.log(refreshToken)
+		// console.log(profile)
+		// console.log('==================')
 		let user = { userid: profile.id, accessToken }
 		let userSns = { accessToken, refreshToken, provider: 'NA', snsid: profile.id, 
 			snsName: profile._json.nickname || null,

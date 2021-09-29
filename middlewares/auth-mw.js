@@ -16,7 +16,6 @@ const isMyBook = (name, mode) => {
 	return async (req, res, next) => {
 		const { idx, _method } = eval(`req.${name}`)
 		const fidx = req.user.idx
-		console.log(idx, fidx, _method)
 		if(mode === 'U' && _method !== 'PUT') next()
 		else {
 			const { success } = await findMyBook(idx, fidx)

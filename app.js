@@ -41,7 +41,6 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 
-
 /***************** locals *****************/
 app.use(locals)
 
@@ -66,8 +65,6 @@ app.use('/api/auth', apiAuthRouter)
 /**************** error init **************/
 const _404Router = require('./routes/error/404-router')
 const _500Router = require('./routes/error/500-router')
-const { Passport } = require('passport')
-const { nextTick } = require('process')
 
 app.use(_404Router)
 app.use(_500Router)

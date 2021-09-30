@@ -1,4 +1,4 @@
-<% if(js) { %> 
+<% if(typeof js === 'string' && js !== '') { %> 
 <script src="/js/<%= js %>.js"></script>
 <% } %> 
 </body>

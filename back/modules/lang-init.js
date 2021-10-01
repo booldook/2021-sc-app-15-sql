@@ -76,6 +76,8 @@ module.exports = _lang => {
 					PASSWD2				: '패스워드 확인',
 					USERNAME			: '이름',
 					EMAIL					: '이메일',
+					DOMAIN				: '인증 플랫폼',
+					APIKEY				: '인증 키',
 				},
 				BT: {
 					UPDATE				: '수정',
@@ -86,6 +88,7 @@ module.exports = _lang => {
 					JOIN					: '회원 가입',
 					LOGIN					: '회원 로그인',
 					BACK					: '뒤로 가기',
+					APIKEY				: '인증키 생성/변경',
 				},
 				MSG: {
 					DELETE				: '정말로 삭제하시겠습니까?'
@@ -166,6 +169,8 @@ module.exports = _lang => {
 					PASSWD2				: 'Password confirm',
 					USERNAME			: 'User name',
 					EMAIL					: 'Email',
+					DOMAIN				: 'Auth Platform',
+					APIKEY				: 'Auth key',
 				},
 				BT: {
 					UPDATE				: 'UPDATE',
@@ -176,6 +181,7 @@ module.exports = _lang => {
 					JOIN					: 'JOIN',
 					LOGIN					: 'LOGIN',
 					BACK					: 'BACK',
+					APIKEY				: 'Auth-key create/update',
 				},
 				MSG: {
 					DELETE				: 'Are you sure you want to delete it?'

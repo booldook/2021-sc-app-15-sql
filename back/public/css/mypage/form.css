@@ -1,0 +1,12 @@
+.form-control:focus {color: unset; background-color: unset; border-color: #005499; outline: unset; box-shadow: unset;}
+.form-control.active, .form-control.active:focus {border-color: #005499;}
+.form-control.error, .form-control.error:focus {border-color: #a70404;}
+
+.form-wrapper {}
+.form-wrapper table {width: 100%; border: 1px solid #ddd;}
+.form-wrapper table td {padding: .75em; border-bottom: 1px solid #dfdfdf;}
+.form-wrapper table td.title {width: 180px;}
+.form-wrapper table td.require::after {display: inline-block; content: '*'; color: #f10; margin-left: .5em; font-size: 1.25em;}
+
+.form-wrapper .valid {padding-top: .5em; color: #00559b;}
+.form-wrapper .valid.error {color: #a70404;}

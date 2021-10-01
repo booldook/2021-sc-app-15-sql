@@ -8,7 +8,8 @@ const { existUser } = require('../../../models/auth')
 router.get('/verify', async (req, res, next) => {
 	// userid, email 중복 검증
 	try {
-		const { success: isUsed } = await existUser(req.query.key, req.query.value)
+		const { key, value } = req.query
+		const { success: isUsed } = await existUser(key, value)
 		res.status(200).json({ isUsed })
 	}
 	catch(err) {

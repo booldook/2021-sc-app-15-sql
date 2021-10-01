@@ -7,7 +7,6 @@ email 검증
 */
 
 var f = document.saveForm;
-var useridEl = f.userid;
 var passwdEl = f.passwd;
 var passwd2El = f.passwd2;
 var usernameEl = f.username;
@@ -19,7 +18,6 @@ var usernameTxt = document.querySelector('.username');
 var emailTxt = document.querySelector('.email');
 
 f.addEventListener('submit', onSubmit)
-useridEl.addEventListener('blur', verifyUserid)
 passwdEl.addEventListener('keyup', verifyPasswd)
 passwdEl.addEventListener('blur', verifyPasswd)
 passwd2El.addEventListener('keyup', verifyPasswd2)
@@ -39,46 +37,15 @@ function onSubmit(e) {
 	var isUsername = verifyUsername();
 
 	if(isPasswd && isPasswd2 && isPasswdEqual && isUsername) {
-		axios
-		.get('/api/auth/verify', { params: { key: 'userid', value: useridEl.value.trim() } })
+		axios.get('/api/auth/verify', { 
+			params: { key: 'email', value: emailEl.value.trim(), update: 1 } 
+		})
 		.then(function(r) {
-			if(r.data.isUsed) return verifyFalse(useridEl, useridTxt, ERR.ID_TAKEN)
+			if(r.data.isUsed) return verifyFalse(emailEl, emailTxt, ERR.EMAIL_TAKEN)
 			else {
-				verifyTrue(useridEl, useridTxt, ERR.ID_OK);
-				axios.get('/api/auth/verify', { params: { key: 'email', value: emailEl.value.trim() } })
-				.then(function(r) {
-					if(r.data.isUsed) return verifyFalse(emailEl, emailTxt, ERR.EMAIL_TAKEN)
-					else {
-						verifyTrue(emailEl, emailTxt);
-						f.submit();
-					}
-				})
-				.catch(function(err) {
-					return verifyFalse(useridEl, useridTxt, err.response.data.msg)
-				})
+				verifyTrue(emailEl, emailTxt);
+				f.submit();
 			}
-		})
-		.catch(function(err) {
-			return verifyFalse(useridEl, useridTxt, err.response.data.msg)
-		})
-	}
-}
-
-function verifyUserid() {
-	var userid = useridEl.value.trim();
-	verifyReset(useridEl, useridTxt);
-	if(userid === '' || userid.length < 6 || userid.length > 24) {
-		return verifyFalse(useridEl, useridTxt, userid === '' ? ERR.ID_NULL : ERR.ID_LEN);
-	}
-	else if(!validator.isAlphanumeric(userid)) {
-		return verifyFalse(useridEl, useridTxt, ERR.ID_VALID);
-	}
-	else {
-		axios
-		.get('/api/auth/verify', { params: { key: 'userid', value: userid } })
-		.then(function(r) {
-			if(r.data.isUsed) return verifyFalse(useridEl, useridTxt, ERR.ID_TAKEN)
-			else validId = verifyTrue(useridEl, useridTxt, ERR.ID_OK)
 		})
 		.catch(function(err) {
 			return verifyFalse(useridEl, useridTxt, err.response.data.msg)
@@ -138,7 +105,6 @@ function verifyUsername() {
 }
 
 function verifyEmail() {
-	// var regExp = /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/;
 	var email = emailEl.value.trim();
 	verifyReset(emailEl, emailTxt)
 	if(email === '') {
@@ -150,7 +116,9 @@ function verifyEmail() {
 	}
 	else {
 		axios
-		.get('/api/auth/verify', { params: { key: 'email', value: email } })
+		.get('/api/auth/verify', { 
+			params: { key: 'email', value: email } 
+		})
 		.then(function(r) {
 			if(r.data.isUsed) return verifyFalse(emailEl, emailTxt, ERR.EMAIL_TAKEN)
 			else validEmail = verifyTrue(emailEl, emailTxt)

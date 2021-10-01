@@ -11,9 +11,15 @@
 		<% } %>
 	</nav>
 	<nav class="lang-wrap">
-		<a href="/ko/book" class="navi <%= (LANG === 'ko' ? 'active': '') %>">한국어</a>
+		<a href="javascript:chgLang('ko');" class="navi <%= (LANG === 'ko' ? 'active': '') %>">한국어</a>
 		<span> | </span>
-		<a href="/en/book" class="navi <%= (LANG === 'en' ? 'active': '') %>">영어</a>
+		<a href="javascript:chgLang('en');" class="navi <%= (LANG === 'en' ? 'active': '') %>">영어</a>
 	</nav>
 </header>
+<script>
+	function chgLang(_lang) {
+		var lang = _lang === 'ko' ? 'en' : 'ko';
+		location.href = location.href.replace('/'+lang+'/', '/'+_lang+'/');
+	}
+</script>
 

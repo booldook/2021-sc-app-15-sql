@@ -18,8 +18,23 @@
 </header>
 <script>
 	function chgLang(_lang) {
+		var protocol = location.protocol;
+		var host = location.host;
+		var pathname = location.pathname;
+		var path = pathname.split('/')
+		var newPath = '';
+		location.href = protocol + '//' + host + ((path[1] === 'ko' || path[1] === 'en')
+			? pathname.replace('/'+path[1]+'/', '/'+_lang+'/')
+			: '/' + _lang + pathname);
+		}
+
+		/*
+		var search = '/'+_lang+'/'
 		var lang = _lang === 'ko' ? 'en' : 'ko';
-		location.href = location.href.replace('/'+lang+'/', '/'+_lang+'/');
-	}
+		if(location.href.indexOf('/'+_lang+'/') > 0)
+			location.href = location.href.replace('/'+lang+'/', '/'+_lang+'/');
+		else
+			location.href = location.href.split('/')
+		*/
 </script>
 

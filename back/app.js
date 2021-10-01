@@ -55,6 +55,7 @@ const apiBookRouter = require('./routes/api/book')
 const authRouter = require('./routes/auth')
 const apiAuthRouter = require('./routes/api/auth')
 const mypageRouter = require('./routes/mypage')
+const apiMypageRouter = require('./routes/api/mypage')
 
 app.use(langMW)
 app.use('/book', bookRouter)
@@ -62,6 +63,7 @@ app.use('/api/book', apiBookRouter)
 app.use('/auth', authRouter)
 app.use('/api/auth', apiAuthRouter)
 app.use('/mypage', mypageRouter)
+app.use('/api/mypage', apiMypageRouter)
 
 
 /**************** error init **************/

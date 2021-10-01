@@ -69,6 +69,7 @@
 		</div>
 	</form>
 	<form action="/<%= LANG %>/mypage/user/api" method="POST" name="apiForm" class="mt-3">
+		<input type="hidden" name="idx" value="<%= idx %>">
 		<table>
 			<tbody>
 				<!-- 도메인 -->
@@ -82,8 +83,8 @@
 				<tr>
 					<td class="title require"><%= MYPAGE.APIKEY %></td>
 					<td class="content form-inline">
-						<input type="text" name="apikey" class="form-control flex-grow-1 mr-2" value="<%= apikey %>" placeholder="<%= MYPAGE.APIKEY %>" readonly>
-						<button type="button" class="btn btn-warning"><%= BT.APIKEY %></button>
+						<input type="text" name="apikey" class="apikey form-control flex-grow-1 mr-2" value="<%= apikey %>" placeholder="<%= MYPAGE.APIKEY %>" readonly>
+						<button type="button" id="btApikey" class="btn btn-warning"><%= BT.APIKEY %></button>
 						<div class="valid apikey"></div>
 					</td>
 				</tr>

@@ -7,15 +7,18 @@ email 검증
 */
 
 var f = document.saveForm;
+var f2 = document.apiForm;
 var passwdEl = f.passwd;
 var passwd2El = f.passwd2;
 var usernameEl = f.username;
 var emailEl = f.email;
+var apikeyEl = f2.apikey;
 var useridTxt = document.querySelector('.userid');
 var passwdTxt = document.querySelector('.passwd');
 var passwd2Txt = document.querySelector('.passwd2');
 var usernameTxt = document.querySelector('.username');
 var emailTxt = document.querySelector('.email');
+var btApikey = document.querySelector('#btApikey');
 
 f.addEventListener('submit', onSubmit)
 if(passwdEl) {
@@ -31,6 +34,8 @@ usernameEl.addEventListener('keyup', verifyUsername)
 usernameEl.addEventListener('blur', verifyUsername)
 emailEl.addEventListener('keyup', verifyEmail)
 emailEl.addEventListener('blur', verifyEmail)
+
+btApikey.addEventListener('click', onApikey)
 
 function onSubmit(e) {
 	e.preventDefault();
@@ -156,4 +161,17 @@ function verifyTrue(el, elTxt, msg) {
 	elTxt.classList.remove('error');
 	elTxt.innerHTML = msg || '';
 	return true;
+}
+
+
+function onApikey() {
+	var idx = f2.idx.value;
+	axios.get('/api/mypage/key/'+idx)
+	.then(function(r) {
+		if(r.data.code === 200) apikeyEl.value = r.data.apikey;
+		else console.log(r);
+	})
+	.catch(function(err) {
+		console.log(err);
+	})
 }

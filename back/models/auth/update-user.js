@@ -8,7 +8,7 @@ const updateUser = async ({ idx, passwd, username, email, sql, values }) => {
 		let { BCRYPT_SALT: salt, BCRYPT_ROUND: round } = process.env
 		let { user } = await findUser('idx', idx)
 		if(!username || !email || user.status < 3) {
-			throw new Error(ERROR.SQL_ERROR)
+			throw new Error('ERROR')
 		}
 		else if(user.status < 5) {
 			sql = " UPDATE users SET username=?, email=? WHERE idx=?"
@@ -20,7 +20,7 @@ const updateUser = async ({ idx, passwd, username, email, sql, values }) => {
 			values = [hashPasswd, username, email, idx]
 		}
 		let [rs] = await pool.execute(sql, values)
-		return rs.affectedRows === 1 ? { success: true } : { success: false, msg: Error.SQL_ERROR }
+		return rs.affectedRows === 1
 	}
 	catch(err) {
 		throw new Error(err)

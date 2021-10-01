@@ -19,7 +19,7 @@ router.post('/', async (req, res, next) => {
 	// 실제 join 처리
 	try {
 		const r = await createUser(req.body)
-		if(r.success) res.redirect('/')
+		if(r) res.redirect('/')
 		else res.send(alert(ERROR.SQL_ERROR))
 	}
 	catch(err) {

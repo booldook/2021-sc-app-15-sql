@@ -16,22 +16,30 @@
 						<input type="text" name="userid" value="<%= userid %>" class="form-control" readonly>
 					</td>
 				</tr>
-				<!-- 패스워드 -->
-				<tr>
-					<td class="title require"><%= MYPAGE.PASSWD %></td>
-					<td class="content">
-						<input type="password" name="passwd" class="form-control" placeholder="<%= MYPAGE.PASSWD %>">
-						<div class="valid passwd"></div>
-					</td>
-				</tr>
-				<!-- 패스워드 확인 -->
-				<tr>
-					<td class="title require"><%= MYPAGE.PASSWD2 %></td>
-					<td class="content">
-						<input type="password" name="passwd2" class="form-control" placeholder="<%= MYPAGE.PASSWD2 %>">
-						<div class="valid passwd2"></div>
-					</td>
-				</tr>
+				<% if(provider) { %>
+					<tr>
+						<td colspan="2">
+							<%= (provider === 'KA') ? MYPAGE.KAKAO : MYPAGE.NAVER  %>
+						</td>
+					</tr>
+				<% } else { %>
+					<!-- 패스워드 -->
+					<tr>
+						<td class="title require"><%= MYPAGE.PASSWD %></td>
+						<td class="content">
+							<input type="password" name="passwd" class="form-control" placeholder="<%= MYPAGE.PASSWD %>">
+							<div class="valid passwd"></div>
+						</td>
+					</tr>
+					<!-- 패스워드 확인 -->
+					<tr>
+						<td class="title require"><%= MYPAGE.PASSWD2 %></td>
+						<td class="content">
+							<input type="password" name="passwd2" class="form-control" placeholder="<%= MYPAGE.PASSWD2 %>">
+							<div class="valid passwd2"></div>
+						</td>
+					</tr>
+				<% } %>
 				<!-- 사용자 이름 -->
 				<tr>
 					<td class="title require"><%= MYPAGE.USERNAME %></td>

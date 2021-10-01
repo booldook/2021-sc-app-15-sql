@@ -10,11 +10,12 @@ const cb = async (accessToken, refreshToken, profile, done) => {
 		// console.log('==================')
 		let user = { userid: profile.id, accessToken }
 		let userSns = { accessToken, refreshToken, provider: 'NA', snsid: profile.id, 
-			snsName: profile._json.nickname || null,
+			snsName: profile._json.name || null,
 			displayName: profile.displayName || null,
 			profileURL: profile._json.profile_image || null,
 			email: profile._json.email || null,
 		}
+		console.log(profile)
 		let { success, idx } = await existUser('userid', user.userid)
 		if(success) {
 			user.idx = idx

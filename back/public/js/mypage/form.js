@@ -18,11 +18,15 @@ var usernameTxt = document.querySelector('.username');
 var emailTxt = document.querySelector('.email');
 
 f.addEventListener('submit', onSubmit)
-passwdEl.addEventListener('keyup', verifyPasswd)
-passwdEl.addEventListener('blur', verifyPasswd)
-passwd2El.addEventListener('keyup', verifyPasswd2)
-passwd2El.addEventListener('blur', verifyPasswd2)
-passwd2El.addEventListener('blur', verifyPasswdEqual)
+if(passwdEl) {
+	passwdEl.addEventListener('keyup', verifyPasswd)
+	passwdEl.addEventListener('blur', verifyPasswd)
+}
+if(passwd2El) {
+	passwd2El.addEventListener('keyup', verifyPasswd2)
+	passwd2El.addEventListener('blur', verifyPasswd2)
+	passwd2El.addEventListener('blur', verifyPasswdEqual)
+}
 usernameEl.addEventListener('keyup', verifyUsername)
 usernameEl.addEventListener('blur', verifyUsername)
 emailEl.addEventListener('keyup', verifyEmail)
@@ -30,13 +34,14 @@ emailEl.addEventListener('blur', verifyEmail)
 
 function onSubmit(e) {
 	e.preventDefault();
-	
-	var isPasswd = verifyPasswd();
-	var isPasswd2 = verifyPasswd2();
-	var isPasswdEqual = verifyPasswdEqual();
+	if(passwdEl && passwd2El) {
+		var isPasswd = verifyPasswd();
+		var isPasswd2 = verifyPasswd2();
+		var isPasswdEqual = verifyPasswdEqual();
+	}
 	var isUsername = verifyUsername();
 
-	if(isPasswd && isPasswd2 && isPasswdEqual && isUsername) {
+	if(passwdEl && passwd2El ? (isPasswd && isPasswd2 && isPasswdEqual) : true && isUsername) {
 		axios.get('/api/auth/verify', { 
 			params: { key: 'email', value: emailEl.value.trim(), update: 1 } 
 		})

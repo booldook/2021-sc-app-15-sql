@@ -5,10 +5,10 @@ const { existUser } = require('./find-user')
 const isValid = require('./is-valid')
 
 const createUser = async (user) => {
-	let { userid, passwd, username, email, sql, hashPasswd } = user
-	let { BCRYPT_SALT: salt, BCRYPT_ROUND: round } = process.env
 	try {
-		hashPasswd = await bcrypt.hash(passwd + salt, Number(round))
+		let { userid, passwd, username, email, sql } = user
+		let { BCRYPT_SALT: salt, BCRYPT_ROUND: round } = process.env
+		let hashPasswd = await bcrypt.hash(passwd + salt, Number(round))
 		// 검증
 		if(isValid(user) !== true) return { success: false, msg: isValid(user).msg }
 		let { success } = await existUser('userid', userid)
@@ -21,7 +21,7 @@ const createUser = async (user) => {
 		return rs.affectedRows === 1 ? { success: true } : { success: false, msg: '저장에 실패하였습니다' }
 	}
 	catch(err) {
-		return { success: false, err }
+		throw new Error(err)
 	}
 }
 

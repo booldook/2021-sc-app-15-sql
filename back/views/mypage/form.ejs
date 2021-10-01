@@ -7,15 +7,9 @@
 <div class="form-wrapper wrapper">
 	<%- include('../inc/title-bar') %> 
 	<form action="/<%= LANG %>/mypage/user" method="POST" name="saveForm">
+		<input type="hidden" name="idx" value="<%= idx %>">
 		<table>
 			<tbody>
-				<!-- 아이디 -->
-				<tr>
-					<td class="title"><%= MYPAGE.USERID %></td>
-					<td class="content">
-						<input type="text" name="userid" value="<%= userid %>" class="form-control" readonly>
-					</td>
-				</tr>
 				<% if(provider) { %>
 					<tr>
 						<td colspan="2">
@@ -23,6 +17,13 @@
 						</td>
 					</tr>
 				<% } else { %>
+					<!-- 아이디 -->
+					<tr>
+						<td class="title"><%= MYPAGE.USERID %></td>
+						<td class="content">
+							<input type="text" name="userid" value="<%= userid %>" class="form-control" readonly>
+						</td>
+					</tr>
 					<!-- 패스워드 -->
 					<tr>
 						<td class="title require"><%= MYPAGE.PASSWD %></td>

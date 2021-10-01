@@ -5,6 +5,7 @@ module.exports = _lang => {
 			return {
 				ERROR: {
 					NOT_FOUND 		: '존재하지 않는 데이터 입니다.',
+					SQL_ERROR			: '데이터 처리에 실패하였습니다.',
 					JOIN: {
 						ID_NULL			: '아이디를 입력하세요.',
 						ID_LEN			: '아이디는 6자 이상 24자 이하 입니다.',
@@ -100,6 +101,7 @@ module.exports = _lang => {
 			return {
 				ERROR: {
 					NOT_FOUND 		: 'Data Not Found',
+					SQL_ERROR			: 'Failed to process data',
 					JOIN: {
 						ID_NULL			: 'Please enter your ID',
 						ID_LEN			: 'ID must be between 6 and 24 characters',

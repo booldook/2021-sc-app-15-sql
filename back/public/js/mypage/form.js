@@ -12,6 +12,7 @@ var passwdEl = f.passwd;
 var passwd2El = f.passwd2;
 var usernameEl = f.username;
 var emailEl = f.email;
+var apiDomainEl = f2.domain;
 var apikeyEl = f2.apikey;
 var useridTxt = document.querySelector('.userid');
 var passwdTxt = document.querySelector('.passwd');
@@ -21,6 +22,8 @@ var emailTxt = document.querySelector('.email');
 var btApikey = document.querySelector('#btApikey');
 
 f.addEventListener('submit', onSubmit)
+f2.addEventListener('submit', onApiSubmit);
+
 if(passwdEl) {
 	passwdEl.addEventListener('keyup', verifyPasswd)
 	passwdEl.addEventListener('blur', verifyPasswd)
@@ -165,8 +168,7 @@ function verifyTrue(el, elTxt, msg) {
 
 
 function onApikey() {
-	var idx = f2.idx.value;
-	axios.get('/api/mypage/key/'+idx)
+	axios.get('/api/mypage/key/')
 	.then(function(r) {
 		if(r.data.code === 200) apikeyEl.value = r.data.apikey;
 		else console.log(r);
@@ -174,4 +176,19 @@ function onApikey() {
 	.catch(function(err) {
 		console.log(err);
 	})
+}
+
+function onApiSubmit(e) {
+	e.preventDefault();
+	if(apiDomainEl.value.trim() === '') {
+		alert('도메인이 존재해야 합니다.');
+		apiDomainEl.focus();
+		return false;
+	}
+	if(apikeyEl.value.trim() === '') {
+		alert('API 키를 발행하셔야 합니다.');
+		apikeyEl.focus();
+		return false;
+	}
+	f2.submit();
 }

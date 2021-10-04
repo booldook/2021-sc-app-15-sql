@@ -4,8 +4,14 @@
 		<a href="/<%= LANG %>/book" class="navi"><%= GLOBAL.NAVI[1] %></a>
 		<% if(user) { %>
 			<a href="/<%= LANG %>/book/form" class="navi"><%= GLOBAL.NAVI[0] %></a>
-			<a href="/<%= LANG %>/mypage/user" class="navi"><%= GLOBAL.NAVI[5] %></a>
-			<a href="/<%= LANG %>/auth/logout" class="navi"><%= GLOBAL.NAVI[3] %></a>
+			<div class="navi bt-navi">
+				<%= GLOBAL.NAVI[5] %>
+				<div class="navi-sub">
+					<a href="/<%= LANG %>/mypage/user" class="sub"><%= GLOBAL.NAVI[6] %></a>
+					<a href="/<%= LANG %>/auth/logout" class="sub"><%= GLOBAL.NAVI[3] %></a>
+				</div>
+			</div>
+			<!-- <a href="/<%= LANG %>/auth/logout" class="navi"><%= GLOBAL.NAVI[3] %></a> -->
 		<% } else { %>
 			<a href="/<%= LANG %>/auth/login" class="navi"><%= GLOBAL.NAVI[2] %></a>
 			<a href="/<%= LANG %>/auth/form" class="navi"><%= GLOBAL.NAVI[4] %></a>
@@ -26,6 +32,15 @@
 		location.href = protocol + '//' + host + ((path[1] === 'ko' || path[1] === 'en')
 			? pathname.replace('/'+path[1]+'/', '/'+_lang+'/')
 			: '/' + _lang + pathname);
-		}
+	}
+
+	$('.header-wrapper .bt-navi').mouseenter(onNaviEnter);
+	$('.header-wrapper .bt-navi').mouseleave(onNaviLeave);
+	function onNaviEnter() {
+		$(this).find('.navi-sub').stop().slideDown();
+	}
+	function onNaviLeave() {
+		$(this).find('.navi-sub').stop().slideUp();
+	}
 </script>
 

@@ -1,0 +1,31 @@
+{
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.1.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "fs-extra": "^10.0.0",
+    "helmet": "^4.6.0",
+    "http-errors": "^1.8.0",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.1",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.3.0",
+    "numeral": "^2.0.6",
+    "rotating-file-stream": "^2.1.6",
+    "uuid": "^8.3.2",
+    "validator": "^13.6.0"
+  },
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "supervisor app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

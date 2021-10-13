@@ -32,7 +32,6 @@
   "main": "01.app.js",
   "scripts": {
     "start": "supervisor app",
-    "api": "supervisor api",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

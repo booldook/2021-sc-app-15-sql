@@ -6,9 +6,6 @@ const { chgStatus, relPath, isImg } = require('../../modules/util')
 const { findBook } = require('../../models/book')
 
 router.get('/:idx', async (req, res, next) => {
-	req.app.locals.PAGE = 'VIEW'
-	req.app.locals.css = 'book/view'
-	req.app.locals.js = 'book/view'
 	try {
 		const { book } = await findBook(req.params.idx)
 		if(book) {
@@ -18,9 +15,9 @@ router.get('/:idx', async (req, res, next) => {
 			book.cover = book.savename ? relPath(book.savename) : null
 			book.upfile = book.savename2 ? relPath(book.savename2) : null
 			book.isImg = isImg(book.savename2 || '')
-			res.status(200).render('book/view', { book })
+			res.status(200).json(book)
 		}
-		else next(createError(400, NO_EXIST))
+		else next(createError(400))
 	}
 	catch(err) {
 		next(createError(err))

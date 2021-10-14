@@ -11,6 +11,7 @@ body {padding-bottom: 120px;}
 .header-wrapper h1.logo {font-size: 1.25em; padding: .75em;}
 .header-wrapper .navi-wrap {display: flex; margin-left: auto;}
 .header-wrapper .navi-wrap .navi {padding: 1em 1.5em;}
+.header-wrapper .navi-wrap .navi.ex {background-color: rgba(0, 0, 0, .5);}
 .header-wrapper .navi-wrap .navi:hover {background-color: mistyrose; color:darkslategrey;}
 
 .header-wrapper a:link {text-decoration: none; color: inherit;}

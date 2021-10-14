@@ -12,10 +12,11 @@
 				</div>
 			</div>
 			<!-- <a href="/<%= LANG %>/auth/logout" class="navi"><%= GLOBAL.NAVI[3] %></a> -->
-		<% } else { %>
-			<a href="/<%= LANG %>/auth/login" class="navi"><%= GLOBAL.NAVI[2] %></a>
-			<a href="/<%= LANG %>/auth/form" class="navi"><%= GLOBAL.NAVI[4] %></a>
-		<% } %>
+			<% } else { %>
+				<a href="/<%= LANG %>/auth/login" class="navi"><%= GLOBAL.NAVI[2] %></a>
+				<a href="/<%= LANG %>/auth/form" class="navi"><%= GLOBAL.NAVI[4] %></a>
+			<% } %>
+			<a href="//127.0.0.1:8080" class="navi ex"><%= GLOBAL.NAVI[7] %></a>
 	</nav>
 	<nav class="lang-wrap">
 		<a href="javascript:chgLang('ko');" class="navi <%= (LANG === 'ko' ? 'active': '') %>">한국어</a>

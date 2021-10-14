@@ -23,6 +23,11 @@ const createError = require('http-errors')
 const { pool } = require('../modules/mysql-init')
 const { findApiUser } = require('../models/auth')
 
+const createCookie = (domain, apikey, res) => {
+  const token = jwt.sign({ domain, apikey }, process.env.JWT_SALT, { expiresIn: Number(process.env.JWT_EXPIRES) })
+  res.cookie('token', token, { expires: new Date(Date.now() + Number(process.env.JWT_EXPIRES)) })
+}
+
 const isApiUser = async (req, res, next) => {
   const errMsg = 'Authorization Fail'
   try {
@@ -30,13 +35,19 @@ const isApiUser = async (req, res, next) => {
     const apikey = req.query.apikey
 
     if (req.cookies.token) {
-
+      const token = jwt.verify(req.cookies.token, process.env.JWT_SALT)
+      if (domain === token.domain && apikey === token.apikey) {
+        createCookie(domain, apikey, res)
+        next()
+      }
+      else {
+        next(createError(401, errMsg))
+      }
     }
     else if (domain && apikey) {
       const { success } = await findApiUser(domain, apikey)
       if (success) {
-        const token = jwt.sign({ domain, apikey }, process.env.JWT_SALT, { expiresIn: '5s' })
-        res.cookie('token', token, { expires: new Date(Date.now() + 5000) })
+        createCookie(domain, apikey, res)
         next()
       }
       else {

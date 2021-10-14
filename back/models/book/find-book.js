@@ -9,7 +9,7 @@ const findBookCount = async (isStatus = true) => {
 		return { success: true, count: count['COUNT(idx)'] }
 	}
 	catch(err) {
-		return { success: false, err }
+		throw new Error(err)
 	}
 }
 
@@ -27,7 +27,7 @@ const findBook = async idx => {
 		return { success: false, book }
 	}
 	catch(err) {
-		return { success: false, err }
+		throw new Error(err)
 	}
 }
 
@@ -45,7 +45,7 @@ const findBooks = async (startIdx, listCnt) => {
 		return { success: true, books }
 	}
 	catch(err) {
-		return { success: false, err }
+		throw new Error(err)
 	}
 }
 
@@ -56,7 +56,7 @@ const findMyBook = async (idx, fidx) => {
 		return { success: count['COUNT(idx)'] ? true : false }
 	}
 	catch(err) {
-		return { success: false, err }
+		throw new Error(err)
 	}
 } 
 

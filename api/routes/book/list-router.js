@@ -5,7 +5,7 @@ const router = express.Router()
 const createError = require('http-errors')
 const { cutTail, chgStatus, getIcon, relPath } = require('../../modules/util')
 const createPager = require('../../modules/pager-init')
-const { findBookCount, findBooks } = require('../../models/book')
+const { findBookCount, findBooks } = require('../../models/auth')
 const { isApiUser } = require('../../middlewares/jwt-mw')
 
 router.get(['/', '/:page'], isApiUser, async (req, res, next) => {

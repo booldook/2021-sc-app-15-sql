@@ -7,7 +7,7 @@ const findAllFiles = async (order = 'ASC') => {
 		return { success: true, files }
 	}
 	catch(err) {
-		return { success: false, err }
+		throw new Error(err)
 	}
 }
 
@@ -19,7 +19,7 @@ const findBookFile = async (opt) => {
 		return { success: true, file }
 	}
 	catch(err) {
-		return { success: false, err }
+		throw new Error(err)
 	}
 }
 
@@ -30,7 +30,7 @@ const findBookFiles = async (idx) => {
 		return { success: true, files }
 	}
 	catch(err) {
-		return { success: false, err }
+		throw new Error(err)
 	}
 }
 
@@ -41,7 +41,7 @@ const findFile = async (idx) => {
 		return { success: true, file }
 	}
 	catch(err) {
-		return { success: false, err }
+		throw new Error(err)
 	}
 }
 

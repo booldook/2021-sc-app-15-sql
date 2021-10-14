@@ -6,8 +6,9 @@ const createError = require('http-errors')
 const { cutTail, chgStatus, getIcon, relPath } = require('../../modules/util')
 const createPager = require('../../modules/pager-init')
 const { findBookCount, findBooks } = require('../../models/book')
+const { isApiUser } = require('../../middlewares/jwt-mw')
 
-router.get(['/', '/:page'], async (req, res, next) => {
+router.get(['/', '/:page'], isApiUser, async (req, res, next) => {
 	try {
 		const { count: totalRecord } = await findBookCount()
 		const page = Number(req.params.page || 1)

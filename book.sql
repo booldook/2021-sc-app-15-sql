@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `books` (
   PRIMARY KEY (`idx`),
   KEY `fidx` (`fidx`),
   CONSTRAINT `FK_books_users` FOREIGN KEY (`fidx`) REFERENCES `users` (`idx`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
@@ -42,17 +42,7 @@ CREATE TABLE IF NOT EXISTS `files` (
   PRIMARY KEY (`idx`),
   KEY `fidx` (`fidx`),
   CONSTRAINT `FK_files_books` FOREIGN KEY (`fidx`) REFERENCES `books` (`idx`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3;
-
--- 내보낼 데이터가 선택되어 있지 않습니다.
-
--- 테이블 book.sessions 구조 내보내기
-CREATE TABLE IF NOT EXISTS `sessions` (
-  `session_id` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
-  `expires` int unsigned NOT NULL,
-  `data` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
-  PRIMARY KEY (`session_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
@@ -64,19 +54,33 @@ CREATE TABLE IF NOT EXISTS `users` (
   `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `status` enum('0','1','2','3','4','5','6','7','8','9') NOT NULL DEFAULT '2' COMMENT '0: 탈퇴, 1: 유휴, 2: 회원, 3: VIP, 9: 관리자',
+  `status` enum('0','1','2','3','4','5','6','7','8','9') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '5' COMMENT '0: 탈퇴, 1: 유휴, 3: 인증회원 5: 회원, 6: VIP, 9: 관리자',
   PRIMARY KEY (`idx`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
--- 테이블 book.users-sns 구조 내보내기
-CREATE TABLE IF NOT EXISTS `users-sns` (
+-- 테이블 book.users_api 구조 내보내기
+CREATE TABLE IF NOT EXISTS `users_api` (
+  `idx` int unsigned NOT NULL AUTO_INCREMENT,
+  `fidx` int unsigned DEFAULT NULL COMMENT 'users -> id',
+  `domain` text CHARACTER SET utf8 COLLATE utf8_general_ci COMMENT '허용가능도메인',
+  `apikey` varchar(255) DEFAULT NULL COMMENT 'uuid4',
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` enum('0','1') NOT NULL COMMENT '0: 사용안함 1: 사용함',
+  PRIMARY KEY (`idx`),
+  KEY `fidx` (`fidx`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
+
+-- 내보낼 데이터가 선택되어 있지 않습니다.
+
+-- 테이블 book.users_sns 구조 내보내기
+CREATE TABLE IF NOT EXISTS `users_sns` (
   `idx` int unsigned NOT NULL AUTO_INCREMENT COMMENT '고유값',
   `fidx` int unsigned NOT NULL COMMENT 'user -> idx',
   `provider` enum('KA','NA') NOT NULL COMMENT '''KA'',''NA''',
-  `userid` varchar(255) NOT NULL COMMENT 'sns id',
-  `userName` varchar(255) DEFAULT NULL COMMENT 'sns 사용자이름',
+  `snsid` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'sns id',
+  `snsName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT 'sns 사용자이름',
   `displayName` varchar(255) DEFAULT NULL COMMENT 'sns 표시이름',
   `email` varchar(255) DEFAULT NULL COMMENT 'sns email',
   `profileURL` varchar(255) DEFAULT NULL COMMENT 'sns 프로필경로',
@@ -87,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `users-sns` (
   PRIMARY KEY (`idx`),
   KEY `fidx` (`fidx`),
   CONSTRAINT `FK_users-sns_users` FOREIGN KEY (`fidx`) REFERENCES `users` (`idx`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 

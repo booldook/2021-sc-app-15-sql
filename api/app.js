@@ -2,6 +2,7 @@
 require('dotenv').config()
 const express = require('express')
 const app = express()
+const { jwt: aaaa } = require('jsonwebtoken')
 
 /*************** server init **************/
 require('./modules/server-init')(app, process.env.PORT)

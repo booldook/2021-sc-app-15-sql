@@ -37,7 +37,7 @@ const findUser = async (key, value) => {
 		WHERE U.${key} = ? `
 		const [r] = await pool.execute(sql, [value])
 		if(r.length === 1) {
-			r[0].domain = r[0].domain.split(',').join('\r\n')
+			r[0].domain = r[0].domain ? r[0].domain.split(',').join('\r\n') : ''
 			return { success: true, user: r[0] }
 		}
 		else 

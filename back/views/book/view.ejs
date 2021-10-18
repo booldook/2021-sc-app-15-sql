@@ -60,7 +60,8 @@
 		</form>
 	<% } else { %>
 		<div class="btn-wrap py-3 d-flex justify-content-center">
-			<a href="/<%= LANG %>/book" class="btn btn-primary"><%= BT.LIST %></a>
+			<!-- <a href="/<%= LANG %>/book" class="btn btn-primary"><%= BT.LIST %></a> -->
+			<a href="javascript: history.go(-1);" class="btn btn-primary"><%= BT.LIST %></a>
 		</div>
 	<% } %>
 </div>

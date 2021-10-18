@@ -12,7 +12,8 @@ router.get(['/', '/:page'], isApiUser, async (req, res, next) => {
 	try {
 		const { count: totalRecord } = await findBookCount()
 		const page = Number(req.params.page || 1)
-		const pager = createPager(page, totalRecord, 5, 3)
+		const { listCnt, pagerCnt } = req.query
+		const pager = createPager(page, totalRecord, listCnt, pagerCnt)
 		const { books } = await findBooks(pager.startIdx.toString(), pager.listCnt.toString())
 		books.forEach(v => {
 			v.createdAt = moment(v.createdAt).format('YYYY-MM-DD')

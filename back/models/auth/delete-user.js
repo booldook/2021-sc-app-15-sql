@@ -6,12 +6,18 @@ const deleteUser = async (user) => {
 	let sql;
 	try {
 		const { idx, passwd, msg } = user
-		if(await findPasswd(idx, passwd)) {
+		const { success } = await findPasswd(idx, passwd)
+		if(success) {
 			sql = " UPDATE users SET status = '0' WHERE idx=? "
-			await pool.execute(sql, [idx])
-			sql = " INSERT INTO users_withdrawal SET fidx=?, msg=? "
-			await pool.execute(sql, [idx, msg])
-			return { success: true }
+			const [r] = await pool.execute(sql, [idx])
+			if(r.affectedRows) {
+				sql = " INSERT INTO users_withdrawal SET fidx=?, msg=? "
+				const [r2] = await pool.execute(sql, [idx, msg])
+				return r2.affectedRows
+					? { success: true }
+					: { success: false }
+			}
+			else return { success: false }
 		}
 		else return { success: false }
   }

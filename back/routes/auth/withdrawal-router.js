@@ -3,7 +3,7 @@ const express = require('express')
 const router = express.Router()
 const createError = require('http-errors')
 const { alert } = require('../../modules/util')
-const {  } = require('../../models/auth')
+const { deleteUser } = require('../../models/auth')
 const { isUser, isGuest } = require('../../middlewares/auth-mw')
 
 router.get('/', isUser, (req, res, next) => {
@@ -15,14 +15,14 @@ router.get('/', isUser, (req, res, next) => {
 	res.status(200).render('auth/withdrawal')
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', isUser, async (req, res, next) => {
 	// 실제 탈퇴 처리
 	try {
+    const { ALERT, ERROR } = req.app.locals;
     const user = { ...req.body, idx: req.user.idx }
-    res.json(user)
-		// const r = await createUser(req.body)
-		// if(r) res.redirect('/')
-		// else res.send(alert(ERROR.SQL_ERROR))
+		const { success } = await deleteUser(user)
+    if(success) res.send(alert(ALERT.WITHDRAWAL))
+    else res.send(alert(ERROR.SQL_ERROR))
 	}
 	catch(err) {
 		next(createError(err))

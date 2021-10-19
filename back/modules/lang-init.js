@@ -27,6 +27,7 @@ module.exports = _lang => {
 				},
 				ALERT: {
 					WITHDRAWAL		: '회원 탈퇴가 처리되었습니다.',
+					SNS_MSG				: 'sns 회원은 탈퇴 후 다시 로그인 하시면 재가입 됩니다.',
 				},
 				GLOBAL: {
 					LOGO					: '도서관리시스템',
@@ -134,6 +135,7 @@ module.exports = _lang => {
 				},
 				ALERT: {
 					WITHDRAWAL		: 'Membership cancellation has been processed.',
+					SNS_MSG				: 'If you log in again after withdrawing from SNS, you will be rejoined.',
 				},
 				GLOBAL: {
 					LOGO					: 'BOOK MANAGEMENT SYSTEM',

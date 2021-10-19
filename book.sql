@@ -1,16 +1,20 @@
--- --------------------------------------------------------
--- 호스트:                          localhost
--- 서버 버전:                        8.0.26 - MySQL Community Server - GPL
--- 서버 OS:                        Win64
--- HeidiSQL 버전:                  11.3.0.6295
--- --------------------------------------------------------
+-- book 데이터베이스 구조 내보내기
+CREATE DATABASE IF NOT EXISTS `book` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `book`;
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8 */;
-/*!50503 SET NAMES utf8mb4 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+-- 테이블 book.users 구조 내보내기
+CREATE TABLE IF NOT EXISTS `users` (
+  `idx` int unsigned NOT NULL AUTO_INCREMENT,
+  `userid` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `passwd` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` enum('0','1','2','3','4','5','6','7','8','9') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '5' COMMENT '0: 탈퇴, 1: 유휴, 3: 인증회원 5: 회원, 6: VIP, 9: 관리자',
+  PRIMARY KEY (`idx`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb3;
+
 
 -- 테이블 book.books 구조 내보내기
 CREATE TABLE IF NOT EXISTS `books` (
@@ -24,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `books` (
   PRIMARY KEY (`idx`),
   KEY `fidx` (`fidx`),
   CONSTRAINT `FK_books_users` FOREIGN KEY (`fidx`) REFERENCES `users` (`idx`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=341 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
@@ -42,21 +46,21 @@ CREATE TABLE IF NOT EXISTS `files` (
   PRIMARY KEY (`idx`),
   KEY `fidx` (`fidx`),
   CONSTRAINT `FK_files_books` FOREIGN KEY (`fidx`) REFERENCES `books` (`idx`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
--- 테이블 book.users 구조 내보내기
-CREATE TABLE IF NOT EXISTS `users` (
-  `idx` int unsigned NOT NULL AUTO_INCREMENT,
-  `userid` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `passwd` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `status` enum('0','1','2','3','4','5','6','7','8','9') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '5' COMMENT '0: 탈퇴, 1: 유휴, 3: 인증회원 5: 회원, 6: VIP, 9: 관리자',
-  PRIMARY KEY (`idx`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3;
+-- 테이블 book.sessions 구조 내보내기
+CREATE TABLE IF NOT EXISTS `sessions` (
+  `session_id` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `expires` int unsigned NOT NULL,
+  `data` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
+  PRIMARY KEY (`session_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=armscii8 COLLATE=armscii8_bin;
+
+-- 내보낼 데이터가 선택되어 있지 않습니다.
+
+
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
@@ -70,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `users_api` (
   `status` enum('0','1') NOT NULL COMMENT '0: 사용안함 1: 사용함',
   PRIMARY KEY (`idx`),
   KEY `fidx` (`fidx`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 
@@ -87,11 +91,24 @@ CREATE TABLE IF NOT EXISTS `users_sns` (
   `accessToken` varchar(255) NOT NULL COMMENT '접근Token',
   `refreshToken` varchar(255) NOT NULL COMMENT '갱신Token',
   `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '접속일',
-  `status` enum('0','1','2','3','4','5') NOT NULL DEFAULT '5' COMMENT '''0:탈퇴'',''1:유휴'',''5:사용''',
+  `status` enum('0','1','2','3','4','5') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '3' COMMENT '''0:탈퇴'',''1:유휴'',''5:사용''',
   PRIMARY KEY (`idx`),
   KEY `fidx` (`fidx`),
   CONSTRAINT `FK_users-sns_users` FOREIGN KEY (`fidx`) REFERENCES `users` (`idx`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3;
+
+-- 내보낼 데이터가 선택되어 있지 않습니다.
+
+-- 테이블 book.users_withdrawal 구조 내보내기
+CREATE TABLE IF NOT EXISTS `users_withdrawal` (
+  `idx` int unsigned NOT NULL AUTO_INCREMENT,
+  `fidx` int unsigned NOT NULL COMMENT 'users -> idx',
+  `msg` text CHARACTER SET utf8 COLLATE utf8_general_ci COMMENT '회원탈퇴사유',
+  `createdAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '탈퇴일',
+  PRIMARY KEY (`idx`),
+  KEY `fidx` (`fidx`),
+  CONSTRAINT `FK_users_withdrawal_users` FOREIGN KEY (`fidx`) REFERENCES `users` (`idx`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 

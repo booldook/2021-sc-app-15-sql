@@ -53,6 +53,10 @@ module.exports = _lang => {
 					TITLE 				: '회원 로그인',
 					DESC 					: '회원님의 로그인 정보를 아래에 입력해 주세요.',
 				},
+				WITHDRAWAL: {
+					TITLE 				: '회원 탈퇴',
+					DESC 					: '회원 탈퇴를 원하시면 아래의 정보를 입력해 주세요.',
+				},
 				FIELD : {
 					NO						: '번호',
 					TITLE					: '제목',
@@ -69,6 +73,7 @@ module.exports = _lang => {
 					PASSWD2				: '패스워드 확인',
 					USERNAME			: '이름',
 					EMAIL					: '이메일',
+					MSG						: '회원 탈퇴 사유',
 				},
 				MYPAGE : {
 					TITLE 				: '회원 정보 수정',
@@ -151,6 +156,10 @@ module.exports = _lang => {
 					TITLE 				: 'Member Login',
 					DESC 					: 'Please enter your login information below.',
 				},
+				WITHDRAWAL: {
+					TITLE 				: 'Withdrawal',
+					DESC 					: 'If you wish to cancel your membership, please enter the information below.',
+				},
 				FIELD : {
 					NO						: 'No',
 					TITLE					: 'Title',
@@ -167,6 +176,7 @@ module.exports = _lang => {
 					PASSWD2				: 'Password confirm',
 					USERNAME			: 'User name',
 					EMAIL					: 'Email',
+					MSG						: 'Reason for withdrawal'
 				},
 				MYPAGE : {
 					TITLE 				: 'User Information Update',

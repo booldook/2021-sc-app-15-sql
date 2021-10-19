@@ -9,12 +9,18 @@
 	<form action="/<%= LANG %>/auth/withdrawal" method="POST" name="saveForm">
 		<table>
 			<tbody>
+				<!-- 탈퇴사유 -->
+				<tr>
+					<td class="title require"><%= AUTH.MSG %></td>
+					<td class="content">
+						<textarea name="withdrawal" class="form-control" placeholder="<%= AUTH.MSG %>" autofocus></textarea>
+					</td>
+				</tr>
 				<!-- 패스워드 -->
 				<tr>
 					<td class="title require"><%= AUTH.PASSWD %></td>
 					<td class="content">
-						<input type="password" name="passwd" class="form-control" placeholder="<%= AUTH.PASSWD %>" autofocus>
-						<div class="valid passwd"></div>
+						<input type="password" name="passwd" class="form-control" placeholder="<%= AUTH.PASSWD %>">
 					</td>
 				</tr>
 			</tbody>

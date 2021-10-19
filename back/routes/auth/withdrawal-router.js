@@ -16,11 +16,13 @@ router.get('/', isUser, (req, res, next) => {
 })
 
 router.post('/', async (req, res, next) => {
-	// 실제 join 처리
+	// 실제 탈퇴 처리
 	try {
-		const r = await createUser(req.body)
-		if(r) res.redirect('/')
-		else res.send(alert(ERROR.SQL_ERROR))
+    const user = { ...req.body, idx: req.user.idx }
+    res.json(user)
+		// const r = await createUser(req.body)
+		// if(r) res.redirect('/')
+		// else res.send(alert(ERROR.SQL_ERROR))
 	}
 	catch(err) {
 		next(createError(err))

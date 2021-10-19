@@ -6,14 +6,14 @@
 <%- include('../inc/banner-auth') %> 
 <div class="form-wrapper wrapper">
 	<%- include('../inc/title-bar') %> 
-	<form action="/<%= LANG %>/auth/withdrawal" method="POST" name="saveForm">
+	<form action="/<%= LANG %>/auth/withdrawal" method="POST" name="saveForm" onsubmit="return onSubmit(this);">
 		<table>
 			<tbody>
 				<!-- 탈퇴사유 -->
 				<tr>
 					<td class="title require"><%= AUTH.MSG %></td>
 					<td class="content">
-						<textarea name="withdrawal" class="form-control" placeholder="<%= AUTH.MSG %>" autofocus></textarea>
+						<textarea name="msg" class="form-control" placeholder="<%= AUTH.MSG %>" autofocus></textarea>
 					</td>
 				</tr>
 				<!-- 패스워드 -->
@@ -26,7 +26,7 @@
 			</tbody>
 		</table>
 		<div class="btn-wrap p-3 text-center">
-			<button class="btn btn-success" id="btSend">
+			<button class="btn btn-success">
 				<%= BT.WITHDRAWAL %>
 			</button>
 			<a class="btn btn-danger" href="javascript: history.go(-1);"><%= BT.BACK %></a>
@@ -35,20 +35,8 @@
 </div>
 <script>
 	var ERR = {
-		ID_NULL			: "<%= ERROR.JOIN.ID_NULL %>",
-		ID_LEN			: "<%= ERROR.JOIN.ID_LEN %>",
-		ID_TAKEN		: "<%= ERROR.JOIN.ID_TAKEN %>",
-		ID_VALID		: "<%= ERROR.JOIN.ID_VALID %>",
-		ID_OK				: "<%= ERROR.JOIN.ID_OK %>",
 		PW_NULL			: "<%= ERROR.JOIN.PW_NULL %>",
-		PW_LEN			: "<%= ERROR.JOIN.PW_LEN %>",
-		PW2_NULL		: "<%= ERROR.JOIN.PW2_NULL %>",
-		PW2_LEN			: "<%= ERROR.JOIN.PW2_LEN %>",
-		PW_TAKEN		: "<%= ERROR.JOIN.PW_TAKEN %>",
-		NAME_NULL		: "<%= ERROR.JOIN.NAME_NULL %>",
-		EMAIL_NULL	: "<%= ERROR.JOIN.EMAIL_NULL %>",
-		EMAIL_VALID	: "<%= ERROR.JOIN.EMAIL_VALID %>",
-		EMAIL_TAKEN	: "<%= ERROR.JOIN.EMAIL_TAKEN %>",
+		MSG_NULL		: "<%= ERROR.JOIN.MSG_NULL %>",
 	};
 </script>
 <%- include('../inc/foot', { js }) %> 

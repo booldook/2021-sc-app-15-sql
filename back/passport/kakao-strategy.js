@@ -1,5 +1,5 @@
 const KakaoStrategy = require('passport-kakao').Strategy
-const { createSnsUser, existUser } = require('../models/auth')
+const { createSnsUser, findUser, changeUser } = require('../models/auth')
 
 const cb = async (accessToken, refreshToken, profile, done) => {
 	try {
@@ -15,11 +15,14 @@ const cb = async (accessToken, refreshToken, profile, done) => {
 			profileURL: profile._json.properties.profile_image || null,
 			email: profile._json.kakao_account.email || null,
 		}
-		let { success, idx, status } = await existUser('userid', user.userid)
+		let { success, user: _user } = await findUser('userid', user.userid)
+		const { idx, status } = _user
 		if(success) {
-			user.idx = idx
-			if(status === '3') {
-				await changeStatus(idx)
+			if(status === '0') {
+				const { success } = await changeUser(idx, { status: '3' })
+				const { success: success2 } = await changeUser(idx, { status: '3' }, 'users_sns')
+				if(success && success2) user.idx = idx
+				else done('Error')
 			}
 		}
 		else {

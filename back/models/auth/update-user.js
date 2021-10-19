@@ -27,4 +27,15 @@ const updateUser = async ({ idx, passwd, username, email, sql, values }) => {
 	}
 }
 
-module.exports = { updateUser }
+const changeUser = async (idx, obj, tblName = 'users') => {
+	sql  = ` UPDATE ${tblName} SET `
+	for(let v of Object.entries(obj)) sql += ` ${v[0]}='${v[1]}',`
+	sql = sql.substr(0, sql.length - 1)
+	sql += ` WHERE idx=? `
+	const [r] = await pool.execute(sql, [idx])
+	return (r.affectedRows)
+		? { success: true }
+		: { success: false }
+}
+
+module.exports = { updateUser, changeUser }

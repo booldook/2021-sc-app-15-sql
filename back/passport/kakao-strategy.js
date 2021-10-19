@@ -15,9 +15,12 @@ const cb = async (accessToken, refreshToken, profile, done) => {
 			profileURL: profile._json.properties.profile_image || null,
 			email: profile._json.kakao_account.email || null,
 		}
-		let { success, idx } = await existUser('userid', user.userid)
+		let { success, idx, status } = await existUser('userid', user.userid)
 		if(success) {
 			user.idx = idx
+			if(status === '3') {
+				await changeStatus(idx)
+			}
 		}
 		else {
 			let { idx: id } = await createSnsUser(user, userSns)

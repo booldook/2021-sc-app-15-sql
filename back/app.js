@@ -3,6 +3,7 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const path = require('path')
+const helmet = require('helmet')
 const passport = require('passport')
 const passportModule = require('./passport')
 
@@ -16,6 +17,9 @@ const langMW = require('./middlewares/lang-mw')
 /*************** server init **************/
 require('./modules/server-init')(app, process.env.PORT)
 
+
+/*************** helmet init **************/
+app.use(helmet({ contentSecurityPolicy: false }))
 
 /*************** static init **************/
 app.use('/', express.static(path.join(__dirname, 'public')))
